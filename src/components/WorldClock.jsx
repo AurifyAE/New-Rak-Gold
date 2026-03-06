@@ -3,22 +3,22 @@ import { Box, Typography } from "@mui/material";
 
 const clockConfig = [
   {
+    key: "india",
+    label: "INDIA",
+    timeZone: "Asia/Kolkata",
+    flag: "/images/india.png",
+  },
+  {
+    key: "uae",
+    label: "UAE",
+    timeZone: "Asia/Dubai",
+    flag: "/images/uae.png",
+  },
+  {
     key: "london",
     label: "LONDON",
     timeZone: "Europe/London",
     flag: "/images/uk.png",
-  },
-  {
-    key: "usa",
-    label: "USA",
-    timeZone: "America/New_York",
-    flag: "/images/usa.png",
-  },
-  {
-    key: "china",
-    label: "CHINA",
-    timeZone: "Asia/Shanghai",
-    flag: "/images/china.png",
   },
 ];
 
@@ -70,11 +70,9 @@ const WorldClockHorizontal = () => {
           display: "flex",
           alignItems: "center",
           gap: "1vw",
-
         }}>
           <Box
             sx={{
-              // width: "3vw",
               width: {
                 xs: "40px",
                 lg: "3vw",
@@ -87,15 +85,12 @@ const WorldClockHorizontal = () => {
               style={{ width: "100%", height: "auto" }}
             />
           </Box>
-          <Box
-
-          >
+          <Box>
             <Typography
               sx={{
                 display: "flex",
                 alignItems: "center",
                 gap: "0.5vw",
-                // fontSize: "1.2vw",
                 fontSize: {
                   xs: "16px",
                   lg: "1.2vw",
@@ -104,13 +99,11 @@ const WorldClockHorizontal = () => {
                 color: "#FFFFFF",
               }}
             >
-
               {clock.label}
             </Typography>
 
             <Typography
               sx={{
-                // fontSize: "1.2vw",
                 fontSize: {
                   xs: "16px",
                   lg: "1.2vw",

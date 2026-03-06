@@ -154,7 +154,7 @@ const CommodityTable = ({ commodities }) => {
           sx={{
             py: "3vw",
             textAlign: "center",
-            color: "rgba(227,192,120,0.4)",
+            color: "rgb(226 254 255)",
             fontSize: "1.25vw",
           }}
         >
