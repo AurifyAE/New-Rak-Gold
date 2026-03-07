@@ -33,7 +33,7 @@ const CommodityTable = ({ commodities }) => {
     let decimals = 3;
     if (intLen >= 4) decimals = 0;
     else if (intLen === 3) decimals = 2;
-    return value.toLocaleString("en-US", { 
+    return value.toLocaleString("en-US", {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
     });
@@ -69,7 +69,7 @@ const CommodityTable = ({ commodities }) => {
         width: "100%",
         mt: "1.2vw",
         overflow: "hidden",
-      
+
       }}
     >
 
@@ -85,6 +85,7 @@ const CommodityTable = ({ commodities }) => {
           alignItems: "end",
           margin: '0.3vw',
           borderRadius: "0.8vw",
+          backdropFilter: "blur(0.3vw)",
           border: "0.1vw solid #DDFDFF59",
         }}
       >
@@ -170,7 +171,7 @@ const CommodityTable = ({ commodities }) => {
               alignItems: "end",
               py: "1.1vw",
               px: "1.5vw",
-              
+
 
             }}
           >
@@ -179,7 +180,7 @@ const CommodityTable = ({ commodities }) => {
                 // fontSize: "1.24vw",
                 fontSize: {
                   xs: "16px",
-                  lg: "1.8vw",
+                  lg: "1.6vw",
                 },
                 fontWeight: 800,
                 color: "#FFFFFF",

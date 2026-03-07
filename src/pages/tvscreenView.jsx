@@ -196,7 +196,6 @@ function TvScreen() {
       >
         {/* Side: Commodity Table */}
         <Grid
-          item
           xs={12}
           md={12}
           display="flex"
@@ -208,10 +207,10 @@ function TvScreen() {
 
         {/* Side: SpotRate & Date Time */}
         <Grid
-          item
           md={12}
           xs={12}
           display="grid"
+          gap="2vw"
           gridTemplateColumns="1fr 1fr"
         >
           <Box
@@ -232,8 +231,8 @@ function TvScreen() {
             >
               <img src={MainLogo} alt="" className="object-contain w-full" />
             </Box>
-            {/* <SystemClock /> */}
             <WorldClock />
+            <SystemClock />
             <PoweredByAurify />
           </Box>
           <Box>
@@ -251,6 +250,37 @@ function TvScreen() {
           }}
         >
           <NewsTicker newsItems={news} />
+
+          <Box
+            sx={{
+              width: "100%",
+
+              height: {
+                xs: "35px",
+                lg: "1vw",
+              },
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              py: "0.8vw",
+              overflow: "hidden",
+
+              background: "  #270122",
+            }}
+          >
+            <Typography
+              sx={{
+                color: "#e6e6e6",
+                fontSize: {
+                  xs: "16px",
+                  lg: "0.7vw",
+                },
+                fontWeight: 500,
+              }}
+            >
+              Copyrights © New RakGold Jewellery Trading L.L.C 1.0.2
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </Box>

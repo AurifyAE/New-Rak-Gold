@@ -49,28 +49,14 @@ const SystemClock = () => {
         <Box
             sx={{
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                gap: "2vw",
                 width: "100%",
-                marginBottom: "1.9vw",
 
             }}
         >
-            {/* Time */}
-            <Typography
-                sx={{
-                    // fontSize: "2.5vw",
-                    fontSize: {
-                        xs: "22px",
-                        lg: "2.5vw",
-                    },
-                    fontWeight: 600,
-                    color: "#ffffff",
-                }}
-            >
-                {timeData.time || "--:--:--"}
-            </Typography>
+           
 
             {/* Day */}
             <Typography
@@ -78,7 +64,7 @@ const SystemClock = () => {
                     // fontSize: "1.8vw",
                     fontSize: {
                         xs: "16px",
-                        lg: "1.8vw",
+                        lg: "1.5vw",
                     },
                     fontWeight: 500,
                     color: "#FFFFFF",
@@ -94,7 +80,7 @@ const SystemClock = () => {
                     // fontSize: "1.8vw",
                     fontSize: {
                         xs: "16px",
-                        lg: "1.8vw",
+                        lg: "1.5vw",
                     },
                     fontWeight: 700,
                     letterSpacing: "1.2px",

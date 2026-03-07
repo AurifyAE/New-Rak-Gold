@@ -28,7 +28,6 @@ const NewsTicker = ({ newsItems = [] }) => {
         sx={{
           color: "#FFFFFF",
           background: '  #36002F',
-          // fontSize: "1.2vw",
           fontSize: {
             xs: "16px",
             lg: "1.2vw",
@@ -39,7 +38,7 @@ const NewsTicker = ({ newsItems = [] }) => {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          borderRadius: '10px',
+          borderRadius: '0.1vw',
           justifyContent: "center",
 
           flexShrink: 0,

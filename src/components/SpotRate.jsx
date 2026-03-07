@@ -143,7 +143,6 @@ const SpotRate = () => {
   };
 
   const MetalPanel = ({ data, bidDir, askDir, theme }) => {
-    const isGold = theme === "gold";
     const isSilver = theme === "silver";
 
     let title = "GOLD";
