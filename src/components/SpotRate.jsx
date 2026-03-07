@@ -160,11 +160,11 @@ const SpotRate = () => {
         <Typography
           sx={{
             fontSize: {
-              xs: "3vw", // mobile
-              sm: "2.5vw", // small tablets
-              md: "1.8vw", // laptops
-              lg: "1.6vw", // desktop
-              xl: "2vw", // large screens
+              xs: "3vw",  
+              sm: "2.5vw",  
+              md: "1.8vw",  
+              lg: "1.6vw",  
+              xl: "2vw",  
             },
 
             fontWeight: 800,
@@ -193,7 +193,7 @@ const SpotRate = () => {
             gridTemplateColumns: "  1fr 1fr",
             borderRadius: "1vw",
             backdropFilter: "blur(0.4vw)",
-           
+
           }}
         >
           <Box
@@ -228,7 +228,7 @@ const SpotRate = () => {
             }}
           >
             <PricePulse label="ASK" value={data.ask} dir={askDir} />
-            
+
             HIGH{" "}
             <span className="hl-value-high text-[#43ff1e]">{data.high}</span>
           </Box>
