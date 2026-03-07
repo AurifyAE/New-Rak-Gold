@@ -58,19 +58,22 @@ const WorldClockHorizontal = () => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         gap: "2vw",
         padding: "1vw 2vw",
         width: "100%",
       }}
     >
       {clockConfig.map((clock) => (
-        <Box key={clock.key} sx={{
-          textAlign: "center",
-          display: "flex",
-          alignItems: "center",
-          gap: "1vw",
-        }}>
+        <Box
+          key={clock.key}
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            gap: "1vw",
+          }}
+        >
           <Box
             sx={{
               width: {

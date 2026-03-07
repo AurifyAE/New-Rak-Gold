@@ -160,11 +160,11 @@ const SpotRate = () => {
         <Typography
           sx={{
             fontSize: {
-              xs: "3vw",  
-              sm: "2.5vw",  
-              md: "1.8vw",  
-              lg: "1.6vw",  
-              xl: "2vw",  
+              xs: "3vw",
+              sm: "2.5vw",
+              md: "1.8vw",
+              lg: "1.6vw",
+              xl: "2vw",
             },
 
             fontWeight: 800,
@@ -243,7 +243,7 @@ const SpotRate = () => {
         display: "grid",
         gap: "2vw",
         width: "100%",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: { xs: '1fr', md: "1fr 1fr" },
       }}
     >
       <MetalPanel

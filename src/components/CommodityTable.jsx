@@ -83,7 +83,6 @@ const CommodityTable = ({ commodities }) => {
           px: "1.5vw",
           borderRadius: "0.5vw",
           alignItems: "end",
-          margin: '0.3vw',
           borderRadius: "0.8vw",
           backdropFilter: "blur(0.3vw)",
           border: "0.1vw solid #DDFDFF59",

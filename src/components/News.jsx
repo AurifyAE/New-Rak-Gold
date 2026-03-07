@@ -19,8 +19,6 @@ const NewsTicker = ({ newsItems = [] }) => {
         alignItems: "center",
         overflow: "hidden",
         background: " rgba(0,0,0,.4)",
-
-
       }}
     >
       {/* LEFT BRAND */}

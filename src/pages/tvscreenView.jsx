@@ -19,6 +19,7 @@ import WorldClock from "../components/WorldClock";
 
 import PoweredByAurify from "../components/PoweredByAurify";
 import SystemClock from "../components/SystemClock";
+import Navbar from "../components/Navbar";
 
 function TvScreen() {
   const [showLimitModal, setShowLimitModal] = useState(false);
@@ -159,9 +160,9 @@ function TvScreen() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         color: "white",
-        pb: " 3vw ",
+        pb: { xs: "0", md: "3vw" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -173,13 +174,13 @@ function TvScreen() {
           height: "100%",
           width: "100%",
 
-          position: "absolute",
+          position: "fixed",
           inset: 0,
           zIndex: 0,
           overflow: "hidden",
         }}
       >
-        <img src={backgroundImage} alt="" className="object-cover w-full" />
+        <img src={backgroundImage} alt="" className="object-cover w-full h-full" />
       </Box>
       {/* Grid */}
       <Grid
@@ -193,6 +194,9 @@ function TvScreen() {
         zIndex="1"
         position="relative"
         margin="0"
+        columnGap={{ xs: '2vw', md: '0' }}
+        width="100%"
+
       >
         {/* Side: Commodity Table */}
         <Grid
@@ -201,8 +205,13 @@ function TvScreen() {
           display="flex"
           alignItems="center"
           justifyContent="start"
+          marginBottom="0.5vw"
         >
           <SpotRate />
+        </Grid>
+
+        <Grid xs={12}>
+          <Navbar />
         </Grid>
 
         {/* Side: SpotRate & Date Time */}
@@ -211,13 +220,15 @@ function TvScreen() {
           xs={12}
           display="grid"
           gap="2vw"
-          gridTemplateColumns="1fr 1fr"
+          gridTemplateColumns={{ xs: '1fr', md: "1fr 1fr" }}
         >
           <Box
             display="flex"
             alignItems="center"
             flexDirection="column"
             justifyContent="center"
+            gap={{ xs: '2vw', md: "0" }}
+
           >
             <Box
               sx={{
@@ -243,7 +254,9 @@ function TvScreen() {
         <Grid
           md={12}
           sx={{
-            position: "fixed",
+            mt: { xs: "20px", md: "0" },
+            position: { xs: "unset", md: "fixed" },
+
             bottom: "0",
             width: "100%",
             left: "0",
@@ -254,9 +267,7 @@ function TvScreen() {
           <Box
             sx={{
               width: "100%",
-
               height: {
-                xs: "35px",
                 lg: "1vw",
               },
               display: "flex",
@@ -264,7 +275,6 @@ function TvScreen() {
               justifyContent: "center",
               py: "0.8vw",
               overflow: "hidden",
-
               background: "  #270122",
             }}
           >
@@ -272,10 +282,10 @@ function TvScreen() {
               sx={{
                 color: "#e6e6e6",
                 fontSize: {
-                  xs: "16px",
                   lg: "0.7vw",
                 },
                 fontWeight: 500,
+                letterSpacing: "0.08vw",
               }}
             >
               Copyrights © New RakGold Jewellery Trading L.L.C 1.0.2
@@ -283,7 +293,7 @@ function TvScreen() {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </Box >
   );
 }
 
