@@ -183,6 +183,8 @@ function TvScreen() {
         <img src={backgroundImage} alt="" className="object-cover w-full h-full" />
       </Box>
       {/* Grid */}
+
+
       <Grid
         container
         spacing={4}
@@ -251,7 +253,7 @@ function TvScreen() {
             </Box>
             <WorldClock />
             <SystemClock />
-            <PoweredByAurify />
+            {/* <PoweredByAurify /> */}
           </Box>
           <Box>
             <CommodityTable commodities={commodities} />
@@ -285,6 +287,8 @@ function TvScreen() {
               background: "  #270122",
             }}
           >
+
+
             <Typography
               sx={{
                 color: "#e6e6e6",

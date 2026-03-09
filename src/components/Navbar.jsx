@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  Button,
-
-} from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 
 const NAV_LINKS = [
-  { label: "LIVE RATES", href: "#" },
-  { label: "PRODUCT", href: "#" },
+  { label: "LIVE RATES", href: "/" },
+  { label: "PRODUCT", href: "product-list" },
   { label: "PRIVACY POLICY", href: "#" },
   { label: "CONTACT US", href: "#" },
 ];
@@ -42,9 +35,7 @@ const NewBadge = () => (
     </Typography>
   </Box>
 );
-
 const Navbar = ({ onNavClick }) => {
-
   return (
     <AppBar
       position="static"
@@ -52,7 +43,8 @@ const Navbar = ({ onNavClick }) => {
       sx={{
         background: "linear-gradient(180deg, #36002F 0%, #270122 100%)",
         borderRadius: "0.5vw",
-        marginTop: { xs: "  15px", sm: "0" },
+        marginTop: { xs: "  15px", sm: "0 " },
+        padding: { xs: "0", sm: "0 2vw " },
       }}
     >
       <Toolbar
@@ -67,14 +59,13 @@ const Navbar = ({ onNavClick }) => {
           flexWrap: { xs: "wrap", lg: "nowrap" },
         }}
       >
-
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: { xs: '20px', md: '2.5vw' },
+            gap: { xs: "20px", md: "2.5vw" },
             justifyContent: { xs: "center", lg: "space-between" },
-            flexWrap: { xs: 'wrap', md: 'nowrap' }
+            flexWrap: { xs: "wrap", md: "nowrap" },
           }}
         >
           {NAV_LINKS.map(({ label, href }) => (
@@ -88,7 +79,7 @@ const Navbar = ({ onNavClick }) => {
               }}
               sx={{
                 color: "#fff",
-                fontSize: { xs: '12px', md: "0.85vw" },
+                fontSize: { xs: "12px", md: "0.85vw" },
                 fontWeight: 700,
                 textDecoration: "none",
                 whiteSpace: "nowrap",
@@ -98,14 +89,12 @@ const Navbar = ({ onNavClick }) => {
                 "&:hover": {
                   color: "#D4AF37",
                 },
-              }
-              }
+              }}
             >
               {label}
             </Typography>
           ))}
         </Box>
-
 
         <Box
           sx={{
@@ -145,7 +134,7 @@ const Navbar = ({ onNavClick }) => {
           <NewBadge />
         </Box>
       </Toolbar>
-    </AppBar >
+    </AppBar>
   );
 };
 
