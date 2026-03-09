@@ -102,7 +102,7 @@ const SpotRate = () => {
             // fontSize: "1vw",
 
             fontSize: {
-              xs: "3vw", // mobile
+              xs: "15px", // mobile
               sm: "2.5vw", // small tablets
               md: "1.6vw", // laptops
             },
@@ -119,7 +119,7 @@ const SpotRate = () => {
           sx={{
             // fontSize: "2.4vw",
             fontSize: {
-              xs: "3vw", // mobile
+              xs: "18px", // mobile
               sm: "2.5vw", // small tablets
               md: "1.8vw", // laptops
               lg: "2.4vw", // desktop
@@ -156,11 +156,15 @@ const SpotRate = () => {
     }
 
     return (
-      <Box>
+      <Box
+        sx={{
+          padding: { xs: " 0vw 3vw", sm: "0" },
+        }}
+        >
         <Typography
           sx={{
             fontSize: {
-              xs: "3vw",
+              xs: "18px",
               sm: "2.5vw",
               md: "1.8vw",
               lg: "1.6vw",
@@ -189,7 +193,7 @@ const SpotRate = () => {
             overflow: "hidden",
             display: "grid",
             gap: "2vw",
-            padding: { xs: " 2vw 1vw", md: " 0.5vw 2vw" },
+            padding: { xs: " 2vw 3vw", sm: " 0.5vw 2vw" },
             gridTemplateColumns: "  1fr 1fr",
             borderRadius: "1vw",
             backdropFilter: "blur(0.4vw)",
@@ -199,7 +203,7 @@ const SpotRate = () => {
           <Box
             sx={{
               fontSize: {
-                xs: "3vw", // mobile
+                xs: "15px", // mobile
                 sm: "2.5vw", // small tablets
                 md: "1.8vw", // laptops
                 lg: "1.6vw", // desktop
@@ -218,7 +222,7 @@ const SpotRate = () => {
           <Box
             sx={{
               fontSize: {
-                xs: "3vw", // mobile
+                xs: "15px", // mobile
                 sm: "2.5vw", // small tablets
                 md: "1.8vw", // laptops
                 lg: "1.6vw", // desktop
@@ -243,6 +247,11 @@ const SpotRate = () => {
         display: "grid",
         gap: "2vw",
         width: "100%",
+        marginTop: {
+          xs: "20px", // mobile
+          sm: "0vw", // small tablets
+
+        },
         gridTemplateColumns: { xs: '1fr', md: "1fr 1fr" },
       }}
     >

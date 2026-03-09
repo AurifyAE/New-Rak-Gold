@@ -27,7 +27,7 @@ const NewsTicker = ({ newsItems = [] }) => {
           color: "#FFFFFF",
           background: '  #36002F',
           fontSize: {
-            xs: "16px",
+            xs: "12px",
             lg: "1.2vw",
           },
           fontWeight: '700',
@@ -63,7 +63,7 @@ const NewsTicker = ({ newsItems = [] }) => {
                 color: "#e6e6e6",
                 // fontSize: "1.3vw",
                 fontSize: {
-                  xs: "16px",
+                  xs: "12px",
                   lg: "1.3vw",
                 },
                 fontWeight: 500,

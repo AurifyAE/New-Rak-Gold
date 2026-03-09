@@ -237,7 +237,14 @@ function TvScreen() {
                   xs: "30vw",
                   lg: "20vw",
                 },
-                marginBottom: "1vw",
+                marginTop: {
+                  xs: "10px",
+                  sm: "0",
+                },
+                marginBottom: {
+                  xs: "10px",
+                  lg: "1vw",
+                },
               }}
             >
               <img src={MainLogo} alt="" className="object-contain w-full" />
@@ -282,7 +289,8 @@ function TvScreen() {
               sx={{
                 color: "#e6e6e6",
                 fontSize: {
-                  lg: "0.7vw",
+                  xs: "12px",
+                  sm: "0.7vw",
                 },
                 fontWeight: 500,
                 letterSpacing: "0.08vw",

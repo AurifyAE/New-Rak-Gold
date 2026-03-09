@@ -92,7 +92,7 @@ const CommodityTable = ({ commodities }) => {
           sx={{
             // fontSize: "1.2vw",
             fontSize: {
-              xs: "16px",
+              xs: "14px",
               lg: "1.2vw",
             },
             fontWeight: 600,
@@ -108,7 +108,7 @@ const CommodityTable = ({ commodities }) => {
           sx={{
             // fontSize: "1.2vw",
             fontSize: {
-              xs: "16px",
+              xs: "14px",
               lg: "1.2vw",
             }, fontWeight: 600,
             color: "#FFFFFF",
@@ -121,7 +121,7 @@ const CommodityTable = ({ commodities }) => {
         <Typography
           sx={{
             fontSize: {
-              xs: "16px",
+              xs: "14px",
               lg: "1.2vw",
             },
             fontWeight: 600,
@@ -136,7 +136,7 @@ const CommodityTable = ({ commodities }) => {
           sx={{
             // fontSize: "1.2vw",
             fontSize: {
-              xs: "16px",
+              xs: "14px",
               lg: "1.2vw",
             },
             fontWeight: 600,
@@ -178,7 +178,7 @@ const CommodityTable = ({ commodities }) => {
               sx={{
                 // fontSize: "1.24vw",
                 fontSize: {
-                  xs: "16px",
+                  xs: "14px",
                   lg: "1.6vw",
                 },
                 fontWeight: 800,
@@ -230,7 +230,7 @@ const CommodityTable = ({ commodities }) => {
               sx={{
                 // fontSize: "1.32vw",
                 fontSize: {
-                  xs: "15px",
+                  xs: "14px",
                   lg: "1.5vw",
                 },
                 fontWeight: 600,
@@ -245,7 +245,7 @@ const CommodityTable = ({ commodities }) => {
               sx={{
                 // fontSize: "1.32vw",
                 fontSize: {
-                  xs: "15px",
+                  xs: "14px",
                   lg: "1.5vw",
                 },
                 fontWeight: 600,
