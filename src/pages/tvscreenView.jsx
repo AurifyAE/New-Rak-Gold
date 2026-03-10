@@ -182,6 +182,10 @@ function TvScreen() {
       >
         <img src={backgroundImage} alt="" className="object-cover w-full h-full" />
       </Box>
+
+
+
+      
       {/* Grid */}
 
 

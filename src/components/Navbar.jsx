@@ -4,8 +4,8 @@ import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 const NAV_LINKS = [
   { label: "LIVE RATES", href: "/" },
   { label: "PRODUCT", href: "product-list" },
-  { label: "PRIVACY POLICY", href: "#" },
-  { label: "CONTACT US", href: "#" },
+  { label: "PRIVACY POLICY", href: "privacy-policy" },
+  { label: "CONTACT US", href: "contact-us" },
 ];
 
 const NewBadge = () => (
@@ -74,7 +74,7 @@ const Navbar = ({ onNavClick }) => {
               component="a"
               href={href}
               onClick={(e) => {
-                e.preventDefault();
+               
                 onNavClick?.(label);
               }}
               sx={{

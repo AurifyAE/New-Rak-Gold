@@ -18,6 +18,7 @@
     "react": "^18.3.1",
     "react-detect-offline": "^2.4.5",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.13.1",
     "socket.io-client": "^4.7.5",
     "use-connection-state": "^0.2.0"
   },
