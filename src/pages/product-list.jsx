@@ -3,50 +3,66 @@ import { Box, Typography, Grid, Button } from "@mui/material";
 import backgroundImage from "/images/background1.png";
 import Navbar from "../components/Navbar";
 
+
 const products = [
   {
     id: 1,
-    category: "Kilo Bar",
-    name: "BRPL Fine Gold Bar",
-    purity: "999.9",
-    weight: "10g",
-    price: 60460,
+    category: "KILO BAR",
+    name: "KILO BAR",
+    purity: "995, 999.9",
+    shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=400&q=80",
-    badge: "BESTSELLER",
+      "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600",
   },
   {
     id: 2,
-    category: "Kilo Bar",
-    name: "Pure Gold Fine Bar",
-    purity: "999",
-    weight: "10g",
-    price: 60454,
+    category: "KILO BAR",
+    name: "KILO BAR",
+    purity: "995, 999.9",
+    shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=400&q=80",
+      "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600",
   },
   {
     id: 3,
-    category: "Jewellery",
-    name: "Gold Jhumka Earrings",
-    purity: "999",
-    weight: "Varies",
-    price: 7052,
+    category: "KILO BAR",
+    name: "KILO BAR",
+    purity: "995, 999.9",
+    shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&q=80",
-    badge: "NEW",
+      "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600",
   },
   {
     id: 4,
-    category: "Tola",
-    name: "Classic Tola Bar",
-    purity: "999.9",
-    weight: "11.66g",
-    price: 69850,
+    category: "KILO BAR",
+    name: "KILO BAR",
+    purity: "995, 999.9",
+    shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=400&q=80",
+      "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600",
+  },
+  {
+    id: 5,
+    category: "KILO BAR",
+    name: "KILO BAR",
+    purity: "995, 999.9",
+    shape: "Rectangle",
+    image:
+      "https://images.unsplash.com/photo-1610375461380-846b3c1d9b55?w=600",
+  },
+  {
+    id: 6,
+    category: "KILO BAR",
+    name: "KILO BAR",
+    purity: "995, 999.9",
+    shape: "Rectangle",
+    image:
+      "https://images.unsplash.com/photo-1610375461200-9b1bff2a8b3f?w=600",
   },
 ];
+
+
+
 
 const categories = ["All", "Kilo Bar", "Jewellery", "Tola"];
 
@@ -151,47 +167,18 @@ function ProductCard({ p, onAdd }) {
             mb: 2,
           }}
         >
-          Purity {p.purity} · Wt {p.weight}
+          Purity : {p.purity}
         </Typography>
-
-        {/* PRICE */}
-        <Box
+        <Typography
           sx={{
-            display: "flex",
-            border: "1px solid rgba(255,255,255,0.1)",
-            mt: "auto",
-            mb: 1.2,
+            fontSize: { xs: "0.9rem", md: "1rem" },
+            color: theme.muted,
+            mb: 2,
           }}
         >
-          <Box
-            sx={{
-              px: 1.5,
-              display: "flex",
-              alignItems: "center",
-              background: "rgba(255,255,255,0.05)",
-              fontSize: "0.9rem",
-              color: "#FFFFFF",
-
-            }}
-          >
-            ASK
-          </Box>
-
-          <Box
-            sx={{
-              flex: 1,
-              py: 1.2,
-              px: 1.5,
-              background: theme.green,
-              color: "#000",
-              fontWeight: "700",
-              textAlign: "center",
-              fontSize: { xs: "1rem", md: "1.1rem" },
-            }}
-          >
-            AED {p.price.toLocaleString()}
-          </Box>
-        </Box>
+          Shape : {p.shape}
+        </Typography>
+       
 
         {/* BUTTON */}
         <Button
@@ -212,7 +199,7 @@ function ProductCard({ p, onAdd }) {
             },
           }}
         >
-          {ok ? "✓ Added" : "Buy Now"}
+          SHOP
         </Button>
       </Box>
     </Box>
@@ -228,7 +215,9 @@ export default function ProductListing() {
     active === "All" ? products : products.filter((p) => p.category === active);
 
   return (
-    <Box sx={{ minHeight: "100vh", background: theme.bg, position: "relative" }}>
+    <Box
+      sx={{ minHeight: "100vh", background: theme.bg, position: "relative" }}
+    >
       {/* BACKGROUND */}
       <Box
         sx={{
@@ -271,7 +260,10 @@ export default function ProductListing() {
                 color: theme.text,
               }}
             >
-              OUR <Box component="span" sx={{ color: theme.gold }}>PRODUCTS</Box>
+              OUR{" "}
+              <Box component="span" sx={{ color: theme.gold }}>
+                PRODUCTS
+              </Box>
             </Typography>
           </Box>
 
@@ -323,7 +315,11 @@ export default function ProductListing() {
             }}
           >
             {filtered.map((p) => (
-              <ProductCard key={p.id} p={p} onAdd={() => setCart((c) => c + 1)} />
+              <ProductCard
+                key={p.id}
+                p={p}
+                onAdd={() => setCart((c) => c + 1)}
+              />
             ))}
           </Box>
         </Box>
@@ -331,8 +327,7 @@ export default function ProductListing() {
         {/* FOOTER */}
         <Box
           sx={{
-            position: "fixed",
-            bottom: 0,
+            
             width: "100%",
             background: "#270122",
             py: 1,

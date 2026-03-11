@@ -275,7 +275,7 @@ export default function PrivacyPolicy() {
         {/* FOOTER */}
         <Box
           sx={{
-            mt: 6,
+            
             py: 1.2,
             textAlign: "center",
             background: "#270122",
