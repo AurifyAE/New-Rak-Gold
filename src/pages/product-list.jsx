@@ -245,6 +245,7 @@ export default function ProductListing() {
             maxWidth: "1400px",
             mx: "auto",
             width: "100%",
+            minHeight: "90dvh",
           }}
         >
           {/* HEADER */}
@@ -330,7 +331,7 @@ export default function ProductListing() {
         {/* FOOTER */}
         <Box
           sx={{
-
+     
             width: "100%",
             background: "#270122",
             py: 1,
