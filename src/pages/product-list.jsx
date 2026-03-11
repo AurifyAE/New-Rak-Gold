@@ -12,7 +12,7 @@ const products = [
     purity: "995, 999.9",
     shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600",
+      "https://images.pexels.com/photos/8442330/pexels-photo-8442330.jpeg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const products = [
     purity: "995, 999.9",
     shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600",
+      "https://images.pexels.com/photos/8442326/pexels-photo-8442326.jpeg",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const products = [
     purity: "995, 999.9",
     shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600",
+      "https://images.pexels.com/photos/8442318/pexels-photo-8442318.jpeg",
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const products = [
     purity: "995, 999.9",
     shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600",
+      "https://images.pexels.com/photos/366551/pexels-photo-366551.jpeg",
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const products = [
     purity: "995, 999.9",
     shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1610375461380-846b3c1d9b55?w=600",
+      "https://images.pexels.com/photos/8442352/pexels-photo-8442352.jpeg",
   },
   {
     id: 6,
@@ -57,9 +57,12 @@ const products = [
     purity: "995, 999.9",
     shape: "Rectangle",
     image:
-      "https://images.unsplash.com/photo-1610375461200-9b1bff2a8b3f?w=600",
+      "https://images.pexels.com/photos/16055834/pexels-photo-16055834.jpeg",
   },
 ];
+
+
+
 
 
 
@@ -178,7 +181,7 @@ function ProductCard({ p, onAdd }) {
         >
           Shape : {p.shape}
         </Typography>
-       
+
 
         {/* BUTTON */}
         <Button
@@ -327,7 +330,7 @@ export default function ProductListing() {
         {/* FOOTER */}
         <Box
           sx={{
-            
+
             width: "100%",
             background: "#270122",
             py: 1,
