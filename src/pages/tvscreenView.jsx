@@ -198,6 +198,7 @@ function TvScreen() {
         padding="1vw"
         flexWrap="wrap"
         zIndex="1"
+        rowGap={{ xs: '2vw', xl: '0' }}
         position="relative"
         margin="0"
         columnGap={{ xs: '2vw', md: '0' }}

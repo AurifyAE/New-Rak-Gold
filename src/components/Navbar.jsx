@@ -50,13 +50,14 @@ const Navbar = ({ onNavClick }) => {
       <Toolbar
         sx={{
           height: { xs: "auto", lg: "1.5vw" },
+          minHeight: { xs: "50px", lg: '70px' },
           position: "relative",
           display: "flex",
           alignItems: "center",
-          justifyContent: { xs: "center", lg: "space-between" },
-          padding: { xs: "15px 0", lg: "0" },
-          gap: { xs: "15px 0", lg: "0" },
-          flexWrap: { xs: "wrap", lg: "nowrap" },
+          justifyContent: { xs: "center", sm: "space-between" },
+          padding: { xs: "15px 0", sm: "0" },
+          gap: { xs: "15px 0", sm: "0" },
+          flexWrap: { xs: "wrap", sm: "nowrap" },
         }}
       >
         <Box
@@ -64,7 +65,7 @@ const Navbar = ({ onNavClick }) => {
             display: "flex",
             alignItems: "center",
             gap: { xs: "20px", md: "2.5vw" },
-            justifyContent: { xs: "center", lg: "space-between" },
+            justifyContent: { xs: "center", sm: "space-between" },
             flexWrap: { xs: "wrap", md: "nowrap" },
           }}
         >
@@ -74,12 +75,12 @@ const Navbar = ({ onNavClick }) => {
               component="a"
               href={href}
               onClick={(e) => {
-               
+
                 onNavClick?.(label);
               }}
               sx={{
                 color: "#fff",
-                fontSize: { xs: "12px", md: "0.85vw" },
+                fontSize: { xs: "12px", sm: "15px", xl: "0.85vw" },
                 fontWeight: 700,
                 textDecoration: "none",
                 whiteSpace: "nowrap",
@@ -115,9 +116,9 @@ const Navbar = ({ onNavClick }) => {
               letterSpacing: "0.06em",
               whiteSpace: "nowrap",
               borderRadius: "2px",
-              px: { xs: "10px", lg: "1.2vw" },
+              px: { xs: "10px", sm: "1.2vw" },
               py: 0,
-              height: { xs: "28px", lg: "2.2vw" },
+              height: { xs: "28px", sm: "2.2vw" },
               minHeight: "unset",
               textTransform: "uppercase",
               transition: "all 0.2s",
