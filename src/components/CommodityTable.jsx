@@ -152,7 +152,7 @@ const CommodityTable = ({ commodities }) => {
         sx={{
           overflow: "auto",
           scrollbarWidth: "none",
-          maxHeight: '18vw'
+          maxHeight: { xs: 'auto', sm: '18vw' }
         }}
       >
 

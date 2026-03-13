@@ -3,7 +3,6 @@ import { Box, Typography, Grid, Button } from "@mui/material";
 import backgroundImage from "/images/background1.png";
 import Navbar from "../components/Navbar";
 
-
 const products = [
   {
     id: 1,
@@ -60,11 +59,6 @@ const products = [
       "https://images.pexels.com/photos/16055834/pexels-photo-16055834.jpeg",
   },
 ];
-
-
-
-
-
 
 
 const categories = ["All", "Kilo Bar", "Jewellery", "Tola"];
