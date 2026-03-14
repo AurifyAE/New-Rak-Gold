@@ -263,7 +263,7 @@ export default function ContactUs() {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: "2rem", md: "2.4rem" },
+                  fontSize: { xs: "20px", sm: "2.4rem", md: "2.8rem" },
                   letterSpacing: "0.05em",
                   color: C.text,
                   mb: 0.5,
@@ -351,7 +351,7 @@ export default function ContactUs() {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: "2rem", md: "2.4rem" },
+                  fontSize: { xs: "20px", sm: "2.4rem", md: "2.8rem" },
                   letterSpacing: "0.05em",
                   color: C.text,
                   mb: 3,
