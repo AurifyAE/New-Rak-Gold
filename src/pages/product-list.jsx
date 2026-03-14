@@ -209,8 +209,11 @@ export default function ProductListing() {
   const [cart, setCart] = useState(0);
 
   const filtered =
-    active === "All" ? products : products.filter((p) => p.category === active);
-
+    active === "All"
+      ? products
+      : products.filter(
+        (p) => p.category.toLowerCase() === active.toLowerCase()
+      );
   return (
     <Box
       sx={{ minHeight: "100vh", background: theme.bg, position: "relative" }}
@@ -325,7 +328,7 @@ export default function ProductListing() {
         {/* FOOTER */}
         <Box
           sx={{
-     
+
             width: "100%",
             background: "#270122",
             py: 1,
