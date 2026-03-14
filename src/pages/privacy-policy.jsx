@@ -222,7 +222,7 @@ export default function PrivacyPolicy() {
             <Typography
               sx={{
                 fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: { xs: "2rem", md: "2.8rem" },
+                fontSize: { xs: "20px", sm: "2.4rem", md: "2.8rem" },
                 letterSpacing: "0.1em",
                 color: C.text,
               }}

@@ -253,7 +253,7 @@ export default function ProductListing() {
           >
             <Typography
               sx={{
-                fontSize: { xs: "2rem", sm: "2.4rem", md: "2.8rem" },
+                fontSize: { xs: "20px", sm: "2.4rem", md: "2.8rem" },
                 letterSpacing: "0.1em",
                 color: theme.text,
               }}
