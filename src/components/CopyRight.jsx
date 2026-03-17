@@ -14,7 +14,7 @@ const CopyRight = () => {
                 justifyContent: "center",
                 py: "0.8vw",
                 overflow: "hidden",
-                background: "#011F27",
+                background: "#01161B",
             }}
         >
 
