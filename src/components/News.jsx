@@ -25,7 +25,7 @@ const NewsTicker = ({ newsItems = [] }) => {
       <Typography
         sx={{
           color: "#FFFFFF",
-          background: '  #36002F',
+          background: '  #002E36',
           fontSize: {
             xs: "12px",
             lg: "1.2vw",

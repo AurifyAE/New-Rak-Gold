@@ -3,8 +3,9 @@ import { Box, Typography, TextField, Button, Grid } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
-import backgroundImage from "/images/background1.png";
+import backgroundImage from "/images/background.png";
 import Navbar from "../components/Navbar";
+import CopyRight from "../components/CopyRight";
 
 /* ─── THEME ─────────────────────────────────────── */
 const C = {
@@ -417,31 +418,8 @@ export default function ContactUs() {
         </Box>
 
         {/* FOOTER */}
-        <Box
-          sx={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 36,
-            background: "#270122",
-            borderTop: `1px solid ${C.line}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 50,
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: "0.65rem",
-              letterSpacing: "0.08em",
-              color: C.dim,
-            }}
-          >
-            Copyrights © New RakGold Jewellery Trading L.L.C · v1.0.2
-          </Typography>
-        </Box>
+        <CopyRight />
+
       </Box>
     </Box>
   );

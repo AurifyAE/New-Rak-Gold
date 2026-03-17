@@ -5,7 +5,8 @@ import CommodityTable from "../components/CommodityTable";
 import NewsTicker from "../components/News";
 import MainLogo from "/images/logo.svg";
 import AurifyLogo from "/images/logo.svg";
-import backgroundImage from "/images/background1.png";
+// import backgroundImage from "/images/background1.png";
+import backgroundImage from "/images/background.png";
 
 import {
   fetchSpotRates,
@@ -20,6 +21,7 @@ import WorldClock from "../components/WorldClock";
 import PoweredByAurify from "../components/PoweredByAurify";
 import SystemClock from "../components/SystemClock";
 import Navbar from "../components/Navbar";
+import CopyRight from "../components/CopyRight";
 
 function TvScreen() {
   const [showLimitModal, setShowLimitModal] = useState(false);
@@ -185,7 +187,7 @@ function TvScreen() {
 
 
 
-      
+
       {/* Grid */}
 
 
@@ -277,37 +279,8 @@ function TvScreen() {
           }}
         >
           <NewsTicker newsItems={news} />
+          <CopyRight />
 
-          <Box
-            sx={{
-              width: "100%",
-              height: {
-                lg: "1vw",
-              },
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              py: "0.8vw",
-              overflow: "hidden",
-              background: "  #270122",
-            }}
-          >
-
-
-            <Typography
-              sx={{
-                color: "#e6e6e6",
-                fontSize: {
-                  xs: "12px",
-                  sm: "0.7vw",
-                },
-                fontWeight: 500,
-                letterSpacing: "0.08vw",
-              }}
-            >
-              Copyrights © New RakGold Jewellery Trading L.L.C 1.0.2
-            </Typography>
-          </Box>
         </Grid>
       </Grid>
     </Box >

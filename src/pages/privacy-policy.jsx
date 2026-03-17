@@ -1,11 +1,12 @@
 import { Box, Typography, Divider } from "@mui/material";
-import backgroundImage from "/images/background1.png";
+import backgroundImage from "/images/background.png";
 import Navbar from "../components/Navbar";
+import CopyRight from "../components/CopyRight";
 
 /* ─── THEME ───────────────── */
 const C = {
   bg: "#0d0018",
-  card: "rgba(30, 0, 45, 0.7)",
+  card: "#001418",
   gold: "#FFB300",
   text: "#FFFFFF",
   muted: "rgba(255,255,255,0.65)",
@@ -273,25 +274,8 @@ export default function PrivacyPolicy() {
         </Box>
 
         {/* FOOTER */}
-        <Box
-          sx={{
-            
-            py: 1.2,
-            textAlign: "center",
-            background: "#270122",
-            borderTop: `1px solid ${C.line}`,
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: { xs: "11px", md: "12px" },
-              letterSpacing: "0.08em",
-              color: C.dim,
-            }}
-          >
-            Copyrights © New RakGold Jewellery Trading L.L.C · v1.0.2
-          </Typography>
-        </Box>
+        <CopyRight />
+
       </Box>
     </Box>
   );

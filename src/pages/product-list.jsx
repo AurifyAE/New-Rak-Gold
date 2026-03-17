@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Box, Typography, Grid, Button } from "@mui/material";
-import backgroundImage from "/images/background1.png";
+import backgroundImage from "/images/background.png";
 import Navbar from "../components/Navbar";
+import CopyRight from "../components/CopyRight";
 
 const products = [
   {
@@ -64,7 +65,7 @@ const products = [
 const categories = ["All", "Kilo Bar", "Jewellery", "Tola"];
 
 const theme = {
-  bg: "#0d0018",
+  bg: "#001718",
   gold: "#FFB300",
   green: "#FFFFFF",
   text: "#FFFFFF",
@@ -79,7 +80,7 @@ function ProductCard({ p, onAdd }) {
   return (
     <Box
       sx={{
-        background: "#32012c",
+        background: "#001718",
         display: "flex",
         flexDirection: "column",
         borderRadius: "15px",
@@ -326,24 +327,7 @@ export default function ProductListing() {
         </Box>
 
         {/* FOOTER */}
-        <Box
-          sx={{
-
-            width: "100%",
-            background: "#270122",
-            py: 1,
-            textAlign: "center",
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: { xs: "12px", md: "0.8rem" },
-              color: "#e6e6e6",
-            }}
-          >
-            Copyrights © New RakGold Jewellery Trading L.L.C 1.0.2
-          </Typography>
-        </Box>
+        <CopyRight />
       </Box>
     </Box>
   );

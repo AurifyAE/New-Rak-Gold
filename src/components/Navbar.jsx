@@ -41,7 +41,7 @@ const Navbar = ({ onNavClick }) => {
       position="static"
       elevation={0}
       sx={{
-        background: "linear-gradient(180deg, #36002F 0%, #270122 100%)",
+        background: "linear-gradient(180deg, #002536 0%, #012427 100%)",
         borderRadius: "0.5vw",
         marginTop: { xs: "  15px", sm: "0 " },
         padding: { xs: "0", sm: "0 2vw " },
