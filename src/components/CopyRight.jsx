@@ -1,14 +1,12 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import React from "react";
 
 const CopyRight = () => {
     return (
         <Box
             sx={{
                 width: "100%",
-                height: {
-                    lg: "1vw",
-                },
+                height: { lg: "1vw", },
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -17,8 +15,6 @@ const CopyRight = () => {
                 background: "#01161B",
             }}
         >
-
-
             <Typography
                 sx={{
                     color: "#e6e6e6",
@@ -33,7 +29,7 @@ const CopyRight = () => {
                 Copyrights © New RakGold Jewellery Trading L.L.C 1.0.2
             </Typography>
         </Box>
-    )
-}
+    );
+};
 
-export default CopyRight
+export default CopyRight;
