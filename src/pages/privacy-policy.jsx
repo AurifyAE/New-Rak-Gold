@@ -6,7 +6,7 @@ import CopyRight from "../components/CopyRight";
 /* ─── THEME ───────────────── */
 const C = {
   bg: "#0d0018",
-  card: "#001418",
+  card: "#2D464EAF",
   gold: "#FFB300",
   text: "#FFFFFF",
   muted: "rgba(255,255,255,0.65)",

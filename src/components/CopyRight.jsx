@@ -12,7 +12,7 @@ const CopyRight = () => {
                 justifyContent: "center",
                 py: "0.8vw",
                 overflow: "hidden",
-                background: "#01161B",
+                background: "rgb(0 29 36)",
             }}
         >
             <Typography

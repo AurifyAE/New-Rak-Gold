@@ -11,8 +11,7 @@ const products = [
     name: "KILO BAR",
     purity: "995, 999.9",
     shape: "Rectangle",
-    image:
-      "https://images.pexels.com/photos/8442330/pexels-photo-8442330.jpeg",
+    image: "https://images.pexels.com/photos/8442330/pexels-photo-8442330.jpeg",
   },
   {
     id: 2,
@@ -20,8 +19,7 @@ const products = [
     name: "KILO BAR",
     purity: "995, 999.9",
     shape: "Rectangle",
-    image:
-      "https://images.pexels.com/photos/8442326/pexels-photo-8442326.jpeg",
+    image: "https://images.pexels.com/photos/8442326/pexels-photo-8442326.jpeg",
   },
   {
     id: 3,
@@ -29,8 +27,7 @@ const products = [
     name: "KILO BAR",
     purity: "995, 999.9",
     shape: "Rectangle",
-    image:
-      "https://images.pexels.com/photos/8442318/pexels-photo-8442318.jpeg",
+    image: "https://images.pexels.com/photos/8442318/pexels-photo-8442318.jpeg",
   },
   {
     id: 4,
@@ -38,8 +35,7 @@ const products = [
     name: "KILO BAR",
     purity: "995, 999.9",
     shape: "Rectangle",
-    image:
-      "https://images.pexels.com/photos/366551/pexels-photo-366551.jpeg",
+    image: "https://images.pexels.com/photos/366551/pexels-photo-366551.jpeg",
   },
   {
     id: 5,
@@ -47,8 +43,7 @@ const products = [
     name: "KILO BAR",
     purity: "995, 999.9",
     shape: "Rectangle",
-    image:
-      "https://images.pexels.com/photos/8442352/pexels-photo-8442352.jpeg",
+    image: "https://images.pexels.com/photos/8442352/pexels-photo-8442352.jpeg",
   },
   {
     id: 6,
@@ -60,7 +55,6 @@ const products = [
       "https://images.pexels.com/photos/16055834/pexels-photo-16055834.jpeg",
   },
 ];
-
 
 const categories = ["All", "Kilo Bar", "Jewellery", "Tola"];
 
@@ -80,11 +74,12 @@ function ProductCard({ p, onAdd }) {
   return (
     <Box
       sx={{
-        background: "#001718",
+        background: "#2D464EAF",
         display: "flex",
         flexDirection: "column",
         borderRadius: "15px",
         overflow: "hidden",
+        padding: "0.2vw",
         height: "100%",
         transition: "0.3s",
         "&:hover .card-img": {
@@ -93,7 +88,13 @@ function ProductCard({ p, onAdd }) {
       }}
     >
       {/* IMAGE */}
-      <Box sx={{ position: "relative", overflow: "hidden" }}>
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          borderRadius: "15px",
+        }}
+      >
         <Box
           component="img"
           className="card-img"
@@ -177,7 +178,6 @@ function ProductCard({ p, onAdd }) {
           Shape : {p.shape}
         </Typography>
 
-
         {/* BUTTON */}
         <Button
           fullWidth
@@ -213,8 +213,8 @@ export default function ProductListing() {
     active === "All"
       ? products
       : products.filter(
-        (p) => p.category.toLowerCase() === active.toLowerCase()
-      );
+          (p) => p.category.toLowerCase() === active.toLowerCase(),
+        );
   return (
     <Box
       sx={{ minHeight: "100vh", background: theme.bg, position: "relative" }}
