@@ -108,7 +108,7 @@ const Navbar = ({ onNavClick }) => {
                     position: "absolute",
                     bottom: "-4px",
                     left: 0,
-                    width: isActive ? "100%" : "0%",
+                    width: isActive ? "50%" : "0%",
                     height: "2px",
                     background: "#4A90E2",
                     borderRadius: "2px",
