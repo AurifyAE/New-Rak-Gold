@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 
 const NAV_LINKS = [
@@ -35,22 +35,38 @@ const NewBadge = () => (
     </Typography>
   </Box>
 );
+
 const Navbar = ({ onNavClick }) => {
+  // Initialize active link from current pathname
+  const getInitialActive = () => {
+    const path = window.location.pathname.replace(/^\//, "") || "/";
+    const match = NAV_LINKS.find(
+      ({ href }) => href === path || href === window.location.pathname,
+    );
+    return match ? match.label : NAV_LINKS[0].label;
+  };
+
+  const [activeLink, setActiveLink] = useState(getInitialActive);
+
+  const handleNavClick = (e, label, href) => {
+    setActiveLink(label);
+    onNavClick?.(label);
+  };
+
   return (
     <AppBar
       position="static"
       elevation={0}
       sx={{
-        background: "  #2D464E",
-        borderRadius: "0.5vw",
-        marginTop: { xs: "  15px", sm: "0 " },
-        padding: { xs: "0", sm: "0 2vw " },
+        background: "#2D464E",
+        marginTop: { xs: "15px", sm: "0" },
+        padding: { xs: "0", sm: "0 2vw" },
       }}
     >
       <Toolbar
         sx={{
           height: { xs: "auto", lg: "1.5vw" },
-          minHeight: { xs: "50px", lg: '70px' },
+          minHeight: { xs: "50px", lg: "70px" },
           position: "relative",
           display: "flex",
           alignItems: "center",
@@ -69,32 +85,48 @@ const Navbar = ({ onNavClick }) => {
             flexWrap: { xs: "wrap", md: "nowrap" },
           }}
         >
-          {NAV_LINKS.map(({ label, href }) => (
-            <Typography
-              key={label}
-              component="a"
-              href={href}
-              onClick={(e) => {
+          {NAV_LINKS.map(({ label, href }) => {
+            const isActive = activeLink === label;
+            return (
+              <Typography
+                key={label}
+                component="a"
+                href={href}
+                onClick={(e) => handleNavClick(e, label, href)}
+                sx={{
+                  color: isActive ? "#4A90E2" : "#fff",
+                  fontSize: { xs: "12px", sm: "15px", xl: "0.85vw" },
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                  position: "relative",
+                  transition: "color 0.2s",
 
-                onNavClick?.(label);
-              }}
-              sx={{
-                color: "#fff",
-                fontSize: { xs: "12px", sm: "15px", xl: "0.85vw" },
-                fontWeight: 700,
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                position: "relative",
-                transition: "color 0.2s",
+                  // Active underline indicator
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    bottom: "-4px",
+                    left: 0,
+                    width: isActive ? "100%" : "0%",
+                    height: "2px",
+                    background: "#4A90E2",
+                    borderRadius: "2px",
+                    transition: "width 0.25s ease",
+                  },
 
-                "&:hover": {
-                  color: "#D4AF37",
-                },
-              }}
-            >
-              {label}
-            </Typography>
-          ))}
+                  "&:hover": {
+                    color: "#93C2F8",
+                    "&::after": { 
+                      width: "100%",
+                    },
+                  },
+                }}
+              >
+                {label}
+              </Typography>
+            );
+          })}
         </Box>
 
         <Box
