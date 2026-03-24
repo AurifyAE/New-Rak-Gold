@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useSpotRate } from "../context/SpotRateContext";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules"; // 👈 Import the module
 
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const OUNCE = 31.103;
 const AED = 3.674;
@@ -39,29 +43,49 @@ const CommodityTable = ({ commodities }) => {
     });
   };
 
-  const rows = commodities
-    ?.map((item) => {
-      const spot = getSpot(item.metal);
-      if (!spot) return null;
+  const rows =
+    commodities
+      ?.map((item) => {
+        const spot = getSpot(item.metal);
+        if (!spot) return null;
 
-      const mult = UNIT_MULTIPLIER[item.weight] || 1;
-      const pur = purityFactor(item.purity);
+        const mult = UNIT_MULTIPLIER[item.weight] || 1;
+        const pur = purityFactor(item.purity);
 
-      const baseBid = (spot.bid / OUNCE) * AED * mult * item.unit * pur;
-      const baseAsk = (spot.ask / OUNCE) * AED * mult * item.unit * pur;
+        const baseBid = (spot.bid / OUNCE) * AED * mult * item.unit * pur;
+        const baseAsk = (spot.ask / OUNCE) * AED * mult * item.unit * pur;
 
-      const bid = baseBid + (Number(item.buyCharge) || 0) + (Number(item.buyPremium) || 0);
-      const ask = baseAsk + (Number(item.sellCharge) || 0) + (Number(item.sellPremium) || 0);
+        const bid =
+          baseBid +
+          (Number(item.buyCharge) || 0) +
+          (Number(item.buyPremium) || 0);
+        const ask =
+          baseAsk +
+          (Number(item.sellCharge) || 0) +
+          (Number(item.sellPremium) || 0);
 
-      return {
-        purity: item.purity,
-        metal: item.metal,
-        unit: `${item.unit} ${item.weight}`,
-        bid,
-        ask,
-      };
-    })
-    .filter(Boolean) ?? [];
+        return {
+          purity: item.purity,
+          metal: item.metal,
+          unit: `${item.unit} ${item.weight}`,
+          bid,
+          ask,
+        };
+      })
+      .filter(Boolean) ?? [];
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsMobile(window.innerWidth <= 768); // 🔥 your control point
+    };
+
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
   return (
     <Box
@@ -69,11 +93,8 @@ const CommodityTable = ({ commodities }) => {
         width: "100%",
         mt: "1.2vw",
         overflow: "hidden",
-
-
       }}
     >
-
       {/* header */}
 
       <Box
@@ -111,7 +132,8 @@ const CommodityTable = ({ commodities }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
-            }, fontWeight: 600,
+            },
+            fontWeight: 600,
             color: "#FFFFFF",
             textAlign: "start",
           }}
@@ -148,124 +170,130 @@ const CommodityTable = ({ commodities }) => {
           ASK
         </Typography>
       </Box>
+
       <Box
         sx={{
-          overflow: "auto",
-          scrollbarWidth: "none",
-          maxHeight: { xs: 'auto', sm: '18vw' }
+          maxHeight: { xs: "auto", sm: "18vw" },
         }}
       >
-
-        {/* Rows */}
         {rows.length === 0 ? (
           <Typography
             sx={{
               py: "3vw",
               textAlign: "center",
-              color: "rgb(226 254 255)",
+              color: "rgba(227,192,120,0.4)",
               fontSize: "1.25vw",
             }}
           >
             No data available
           </Typography>
         ) : (
-          rows.map((row, index) => (
-            <Box
-              key={index}
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "1.4fr 0.8fr 0.8fr 0.8fr",
-                alignItems: "end",
-                py: "1.1vw",
-                px: "1.5vw",
-
-
-              }}
-            >
-              <Typography
-                sx={{
-                  // fontSize: "1.24vw",
-                  fontSize: {
-                    xs: "14px",
-                    lg: "1.6vw",
-                  },
-                  fontWeight: 800,
-                  color: "#FFFFFF",
-                  display: 'flex',
-                  alignItems: 'center ',
-                  justifyContent: 'start',
-                  gap: {
-                    xs: "7px",
-                    lg: "0.3vw",
-                  },
-
-                }}
-              >
-                {row.metal}
-                <Typography
+          <Swiper
+            direction="vertical"
+            slidesPerView={4} // 👈 adjust based on height
+            spaceBetween={10}
+            loop={true}
+            modules={[Autoplay]} // 👈 Register it here
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+            }}
+            speed={3000} // 👈 higher = smoother slow scroll
+            allowTouchMove={false} // important for TV
+            style={{ height: isMobile ? "35vw" : "18vw" }}
+          >
+            {rows.map((row, index) => (
+              <SwiperSlide key={index}>
+                <Box
+                  key={index}
                   sx={{
-                    // fontSize: "1vw",
-                    fontSize: {
-                      xs: "12px",
-                      lg: "1.2vw",
-                    },
-                    fontWeight: 400,
-                    color: "#FFFFFF",
-                    // mb:'-0.5vw'
+                    display: "grid",
+                    gridTemplateColumns: "1.4fr 0.8fr 0.8fr 0.8fr",
+                    alignItems: "end",
+                    py: "1.1vw",
+                    px: "1.5vw",
                   }}
                 >
-                  {row.purity}
-                </Typography>
-              </Typography>
+                  <Typography
+                    sx={{
+                      // fontSize: "1.24vw",
+                      fontSize: {
+                        xs: "14px",
+                        lg: "1.6vw",
+                      },
+                      fontWeight: 800,
+                      color: "#FFFFFF",
+                      display: "flex",
+                      alignItems: "center ",
+                      justifyContent: "start",
+                      gap: {
+                        xs: "7px",
+                        lg: "0.3vw",
+                      },
+                    }}
+                  >
+                    {row.metal}
+                    <Typography
+                      sx={{
+                        // fontSize: "1vw",
+                        fontSize: {
+                          xs: "12px",
+                          lg: "1.2vw",
+                        },
+                        fontWeight: 400,
+                        color: "#FFFFFF",
+                        // mb:'-0.5vw'
+                      }}
+                    >
+                      {row.purity}
+                    </Typography>
+                  </Typography>
 
-              <Typography
-                sx={{
-                  // fontSize: "1.18vw",
-                  fontSize: {
-                    xs: "14px",
-                    lg: "1.3vw",
-                  },
-                  color: "#FFFFFF",
-                  textAlign: "start",
-                }}
-              >
-                {row.unit}
-              </Typography>
+                  <Typography
+                    sx={{
+                      // fontSize: "1.18vw",
+                      fontSize: {
+                        xs: "14px",
+                        lg: "1.3vw",
+                      },
+                      color: "#FFFFFF",
+                      textAlign: "start",
+                    }}
+                  >
+                    {row.unit}
+                  </Typography>
 
+                  <Typography
+                    sx={{
+                      // fontSize: "1.32vw",
+                      fontSize: {
+                        xs: "14px",
+                        lg: "1.5vw",
+                      },
+                      fontWeight: 600,
+                      color: "#FFFFFF", // soft pink ASK
+                    }}
+                  >
+                    {formatPrice(row.bid)}
+                  </Typography>
 
-
-              <Typography
-                sx={{
-                  // fontSize: "1.32vw",
-                  fontSize: {
-                    xs: "14px",
-                    lg: "1.5vw",
-                  },
-                  fontWeight: 600,
-                  color: "#FFFFFF", // soft pink ASK
-                }}
-              >
-                {formatPrice(row.bid)}
-              </Typography>
-
-
-              <Typography
-                sx={{
-                  // fontSize: "1.32vw",
-                  fontSize: {
-                    xs: "14px",
-                    lg: "1.5vw",
-                  },
-                  fontWeight: 600,
-                  color: "#FFFFFF", // soft pink ASK
-                }}
-              >
-                {formatPrice(row.ask)}
-              </Typography>
-
-
-            </Box>
-          ))
+                  <Typography
+                    sx={{
+                      // fontSize: "1.32vw",
+                      fontSize: {
+                        xs: "14px",
+                        lg: "1.5vw",
+                      },
+                      fontWeight: 600,
+                      color: "#FFFFFF", // soft pink ASK
+                    }}
+                  >
+                    {formatPrice(row.ask)}
+                  </Typography>
+                </Box>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         )}
       </Box>
     </Box>

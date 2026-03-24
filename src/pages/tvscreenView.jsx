@@ -78,7 +78,6 @@ function TvScreen() {
 
         // Handle News
         setNews(newsRes.data.news.news);
-
       } catch (error) {
         setError("An error occurred while fetching data");
       }
@@ -117,8 +116,7 @@ function TvScreen() {
         socket.emit("request-data", symbols);
       });
 
-      socket.on("disconnect", () => {
-      });
+      socket.on("disconnect", () => {});
 
       socket.on("market-data", (data) => {
         if (data && data.symbol) {
@@ -145,6 +143,20 @@ function TvScreen() {
       };
     }
   }, [serverURL, symbols]);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsMobile(window.innerWidth <= 768); // 🔥 your control point
+    };
+  
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+  
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -177,14 +189,14 @@ function TvScreen() {
           overflow: "hidden",
         }}
       >
-        <img src={backgroundImage} alt="" className="object-cover w-full h-full" />
+        <img
+          src={backgroundImage}
+          alt=""
+          className="object-cover w-full h-full"
+        />
       </Box>
 
-
-
-
       {/* Grid */}
-
 
       <Grid
         container
@@ -195,12 +207,11 @@ function TvScreen() {
         padding="1vw"
         flexWrap="wrap"
         zIndex="1"
-        rowGap={{ xs: '2vw', xl: '0' }}
+        rowGap={{ xs: "2vw", xl: "0" }}
         position="relative"
         margin="0"
-        columnGap={{ xs: '2vw', md: '0' }}
+        columnGap={{ xs: "2vw", md: "0" }}
         width="100%"
-
       >
         {/* Side: Commodity Table */}
         <Grid
@@ -224,23 +235,30 @@ function TvScreen() {
           xs={12}
           display="grid"
           gap="2vw"
-          gridTemplateColumns={{ xs: '1fr', md: "1fr 1fr" }}
+          // gridTemplateColumns={{ xs: '1fr  ', md: "1fr 1fr" }}
+
+          gridTemplateColumns={isMobile ? "1fr" : { xs: "1fr", md: "1fr 1fr" }}
         >
           <Box
             display="flex"
             alignItems="center"
             flexDirection="column"
             justifyContent="center"
-            gap={{ xs: '2vw', md: "0" }}
-
+            gap={{ xs: "2vw", md: "0" }}
           >
             <Box
               sx={{
                 height: "auto",
-                width: {
-                  xs: "30vw",
-                  lg: "20vw",
-                },
+                // width: {
+                //   xs: "30vw",
+                //   lg: "20vw",
+                // },
+                width: isMobile
+                  ? "20vw"
+                  : {
+                      xs: "30vw",
+                      lg: "20vw",
+                    },
                 marginTop: {
                   xs: "10px",
                   sm: "0",
@@ -275,10 +293,9 @@ function TvScreen() {
         >
           <NewsTicker newsItems={news} />
           <CopyRight />
-
         </Grid>
       </Grid>
-    </Box >
+    </Box>
   );
 }
 
