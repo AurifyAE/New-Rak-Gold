@@ -148,15 +148,13 @@ function TvScreen() {
 
   useEffect(() => {
     const checkWidth = () => {
-      setIsMobile(window.innerWidth <= 768); // 🔥 your control point
+      setIsMobile(window.screen.width <= 768); // 🔥 screen.width ignores zoom
     };
-  
+
     checkWidth();
     window.addEventListener("resize", checkWidth);
-  
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -231,13 +229,12 @@ function TvScreen() {
 
         {/* Side: SpotRate & Date Time */}
         <Grid
-          md={12}
           xs={12}
           display="grid"
           gap="2vw"
           // gridTemplateColumns={{ xs: '1fr  ', md: "1fr 1fr" }}
 
-          gridTemplateColumns={isMobile ? "1fr" : { xs: "1fr", md: "1fr 1fr" }}
+          gridTemplateColumns={isMobile ? "1fr" : "1fr 1fr"}
         >
           <Box
             display="flex"
