@@ -3,7 +3,7 @@ import { Box, Typography, TextField, Button, Grid } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
-import backgroundImage from "/images/background.png";
+import backgroundImage from "/images/backgroundnew.png";
 import Navbar from "../components/Navbar";
 import CopyRight from "../components/CopyRight";
 

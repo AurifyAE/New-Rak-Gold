@@ -219,6 +219,7 @@ const CommodityTable = ({ commodities }) => {
                       // fontSize: "1.24vw",
                       fontSize: {
                         xs: "14px",
+                        sm: "12px",
                         lg: "1.6vw",
                       },
                       fontWeight: 800,
@@ -238,6 +239,7 @@ const CommodityTable = ({ commodities }) => {
                         // fontSize: "1vw",
                         fontSize: {
                           xs: "12px",
+                          sm: "10px",
                           lg: "1.2vw",
                         },
                         fontWeight: 400,

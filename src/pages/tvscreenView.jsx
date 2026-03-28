@@ -6,7 +6,7 @@ import NewsTicker from "../components/News";
 import MainLogo from "/images/logo.svg";
 import AurifyLogo from "/images/logo.svg";
 // import backgroundImage from "/images/background1.png";
-import backgroundImage from "/images/background.png";
+import backgroundImage from "/images/backgroundnew.png";
 
 import {
   fetchSpotRates,
