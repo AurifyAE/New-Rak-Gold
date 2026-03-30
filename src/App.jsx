@@ -10,33 +10,23 @@ import PrivacyPolicy from "./pages/privacy-policy";
 import ContactUs from "./pages/contact-us";
 
 function App() {
-  const [isTvScreen, setIsTvScreen] = useState(window.innerWidth >= 200);
+  const [isTvScreen, setIsTvScreen] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
-    // Function to check the window size and update state
     const handleResize = () => {
-      const isLargeScreen = window.innerWidth >= 200;
-      setIsTvScreen(isLargeScreen);
+      setIsTvScreen(window.innerWidth >= 1024);
     };
 
-    // Initial check
     handleResize();
-
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     // <SpotRateProvider>
     //   {!isTvScreen ? <ErrorPage /> : <TvScreen />}
     // </SpotRateProvider>
-
-
 
     <SpotRateProvider>
       {!isTvScreen ? (

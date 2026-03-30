@@ -1,5 +1,5 @@
 import { Box, Typography, Divider } from "@mui/material";
-import backgroundImage from "/images/background.png";
+import backgroundImage from "/images/backgroundnew.png";
 import Navbar from "../components/Navbar";
 import CopyRight from "../components/CopyRight";
 
