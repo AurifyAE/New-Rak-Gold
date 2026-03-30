@@ -66,7 +66,7 @@ const Navbar = ({ onNavClick }) => {
       <Toolbar
         sx={{
           height: { xs: "auto", lg: "1.5vw" },
-          minHeight: { xs: "50px", lg: "70px" },
+          minHeight: { xs: "50px", lg: "50px" },
           position: "relative",
           display: "flex",
           alignItems: "center",

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useSpotRate } from "../context/SpotRateContext";
+import MainLogo from "/images/logo.svg";
 
 const SpotRate = () => {
   const { goldData, silverData } = useSpotRate();
@@ -9,6 +10,18 @@ const SpotRate = () => {
   const [goldAskDir, setGoldAskDir] = useState("neutral");
   const [silverBidDir, setSilverBidDir] = useState("neutral");
   const [silverAskDir, setSilverAskDir] = useState("neutral");
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsMobile(window.screen.width <= 768); // 🔥 screen.width ignores zoom
+    };
+
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
   const prev = useRef({
     goldBid: null,
@@ -160,7 +173,7 @@ const SpotRate = () => {
         sx={{
           padding: { xs: " 0vw 3vw", sm: "0" },
         }}
-        >
+      >
         <Typography
           sx={{
             fontSize: {
@@ -197,7 +210,6 @@ const SpotRate = () => {
             gridTemplateColumns: "  1fr 1fr",
             borderRadius: "1vw",
             backdropFilter: "blur(0.4vw)",
-
           }}
         >
           <Box
@@ -215,7 +227,6 @@ const SpotRate = () => {
           >
             <PricePulse label="BID" value={data.bid} dir={bidDir} />
             LOW <span className="hl-value-low text-[#ff1818]">{data.low}</span>
-
           </Box>
 
           {/* Price Boxes */}
@@ -232,7 +243,6 @@ const SpotRate = () => {
             }}
           >
             <PricePulse label="ASK" value={data.ask} dir={askDir} />
-
             HIGH{" "}
             <span className="hl-value-high text-[#43ff1e]">{data.high}</span>
           </Box>
@@ -247,12 +257,12 @@ const SpotRate = () => {
         display: "grid",
         gap: "2vw",
         width: "100%",
+        alignItems:'end',
         marginTop: {
           xs: "20px", // mobile
           sm: "0vw", // small tablets
-
         },
-        gridTemplateColumns: { xs: '1fr', md: "1fr 1fr" },
+        gridTemplateColumns: { xs: "1fr", md: "1fr 0.5fr 1fr" },
       }}
     >
       <MetalPanel
@@ -261,6 +271,28 @@ const SpotRate = () => {
         askDir={goldAskDir}
         theme="gold"
       />
+      <Box
+        sx={{
+          height: "auto",
+
+          width: isMobile
+            ? "20vw"
+            : {
+                xs: "30vw",
+                lg: "20vw",
+              },
+          marginTop: {
+            xs: "10px",
+            sm: "0",
+          },
+          marginBottom: {
+            xs: "10px",
+            lg: "1vw",
+          },
+        }}
+      >
+        <img src={MainLogo} alt="" className="object-contain w-full" />
+      </Box>
 
       <MetalPanel
         data={silverData}
