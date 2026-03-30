@@ -193,13 +193,13 @@ const CommodityTable = ({ commodities }) => {
             slidesPerView={4} // 👈 adjust based on height
             spaceBetween={10}
             loop={true}
-            modules={[Autoplay]} // 👈 Register it here
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-            }}
+            // modules={[Autoplay]} // 👈 Register it here
+            // autoplay={{
+            //   delay: 0,
+            //   disableOnInteraction: false,
+            // }}
             speed={3000} // 👈 higher = smoother slow scroll
-            allowTouchMove={false} // important for TV
+            // allowTouchMove={false} // important for TV
             style={{ height: isMobile ? "35vw" : "18vw" }}
           >
             {rows.map((row, index) => (
