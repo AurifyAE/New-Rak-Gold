@@ -24,16 +24,15 @@ const CommodityTable = ({ title, items }) => {
   // ✅ FIXED: Minted bars treated as gold
   const getSpot = (metal) => {
     const lower = metal?.toLowerCase() || "";
-  
+
     if (lower.includes("gold") || lower.includes("minted")) {
       return goldData; // ✅ minted uses gold spot
     }
-  
+
     if (lower.includes("silver")) return silverData;
-  
+
     return null;
   };
-  
 
   const purityFactor = (purity) =>
     purity ? purity / 10 ** String(purity).length : 1;
@@ -89,42 +88,39 @@ const CommodityTable = ({ title, items }) => {
   //     .filter(Boolean) ?? [];
 
   const rows =
-  items
-    ?.map((item) => {
-      const spot = getSpot(item.metal);
+    items
+      ?.map((item) => {
+        const spot = getSpot(item.metal);
 
-      // 🔥 IMPORTANT: fallback to goldData
-      const effectiveSpot = spot || goldData;
-      if (!effectiveSpot) return null;
+        // 🔥 IMPORTANT: fallback to goldData
+        const effectiveSpot = spot || goldData;
+        if (!effectiveSpot) return null;
 
-      const mult = UNIT_MULTIPLIER[item.weight] || 1;
-      const pur = purityFactor(item.purity);
-      const unitValue = Number(item.unit) || 1;
+        const mult = UNIT_MULTIPLIER[item.weight] || 1;
+        const pur = purityFactor(item.purity);
+        const unitValue = Number(item.unit) || 1;
 
-      const baseBid =
-        (effectiveSpot.bid / OUNCE) * AED * mult * unitValue * pur;
+        const baseBid =
+          (effectiveSpot.bid / OUNCE) * AED * mult * unitValue * pur;
 
-      const baseAsk =
-        (effectiveSpot.ask / OUNCE) * AED * mult * unitValue * pur;
+        const baseAsk =
+          (effectiveSpot.ask / OUNCE) * AED * mult * unitValue * pur;
 
-      return {
-        purity: item.purity,
-        metal: item.metal,
-        unit: `${unitValue} ${item.weight}`,
-        bid:
-          baseBid +
-          (Number(item.buyCharge) || 0) +
-          (Number(item.buyPremium) || 0),
-        ask:
-          baseAsk +
-          (Number(item.sellCharge) || 0) +
-          (Number(item.sellPremium) || 0),
-      };
-    })
-    .filter(Boolean) ?? [];
-
-
-
+        return {
+          purity: item.purity,
+          metal: item.metal,
+          unit: `${unitValue} ${item.weight}`,
+          bid:
+            baseBid +
+            (Number(item.buyCharge) || 0) +
+            (Number(item.buyPremium) || 0),
+          ask:
+            baseAsk +
+            (Number(item.sellCharge) || 0) +
+            (Number(item.sellPremium) || 0),
+        };
+      })
+      .filter(Boolean) ?? [];
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -143,7 +139,7 @@ const CommodityTable = ({ title, items }) => {
   if (!rows.length) return null;
 
   return (
-    <Box sx={{ width: "100%",   overflow: "hidden" }}>
+    <Box sx={{ width: "100%", overflow: "hidden" }}>
       {/* 🔥 TITLE */}
       <Box
         sx={{
@@ -184,6 +180,7 @@ const CommodityTable = ({ title, items }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -200,6 +197,8 @@ const CommodityTable = ({ title, items }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
+
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -214,6 +213,8 @@ const CommodityTable = ({ title, items }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
+
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -229,6 +230,8 @@ const CommodityTable = ({ title, items }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
+
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -258,7 +261,7 @@ const CommodityTable = ({ title, items }) => {
         ) : (
           <Swiper
             direction="vertical"
-            slidesPerView={4} // 👈 adjust based on height
+            slidesPerView={4}
             spaceBetween={10}
             loop={true}
             // modules={[Autoplay]} // 👈 Register it here
@@ -278,8 +281,10 @@ const CommodityTable = ({ title, items }) => {
                     display: "grid",
                     gridTemplateColumns: "1.4fr 0.8fr 0.8fr 0.8fr",
                     alignItems: "end",
-                    py: "1.1vw",
+                    borderRadius: ".5vw",
+                    py: ".7vw",
                     px: "1.5vw",
+                    border: "1px solid rgba(255, 255, 255, 0.3)", // 👈 mild bg
                   }}
                 >
                   <Typography
@@ -289,6 +294,7 @@ const CommodityTable = ({ title, items }) => {
                         xs: "14px",
                         sm: "12px",
                         lg: "1.6vw",
+                        xl: "1.8vw",
                       },
                       fontWeight: 800,
                       color: "#FFFFFF",
@@ -325,6 +331,8 @@ const CommodityTable = ({ title, items }) => {
                       fontSize: {
                         xs: "14px",
                         lg: "1.3vw",
+                        xl: "1.8vw",
+
                       },
                       color: "#FFFFFF",
                       textAlign: "start",
@@ -339,6 +347,8 @@ const CommodityTable = ({ title, items }) => {
                       fontSize: {
                         xs: "14px",
                         lg: "1.5vw",
+                        xl: "1.8vw",
+
                       },
                       fontWeight: 600,
                       color: "#FFFFFF", // soft pink ASK
@@ -353,6 +363,8 @@ const CommodityTable = ({ title, items }) => {
                       fontSize: {
                         xs: "14px",
                         lg: "1.5vw",
+                        xl: "1.8vw",
+
                       },
                       fontWeight: 600,
                       color: "#FFFFFF", // soft pink ASK

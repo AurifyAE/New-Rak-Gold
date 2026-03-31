@@ -174,30 +174,7 @@ const SpotRate = () => {
           padding: { xs: " 0vw 3vw", sm: "0" },
         }}
       >
-        <Typography
-          sx={{
-            fontSize: {
-              xs: "18px",
-              sm: "2.5vw",
-              md: "1.8vw",
-              lg: "1.6vw",
-              xl: "2vw",
-            },
-
-            fontWeight: 800,
-            letterSpacing: "0.1vw",
-            background: gradient,
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-            display: "flex",
-            mb: "1vw",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {title}
-        </Typography>
+         
 
         <Box
           sx={{
