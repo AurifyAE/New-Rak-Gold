@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useSpotRate } from "../context/SpotRateContext";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules"; // 👈 Import the module
+import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -18,13 +18,19 @@ const UNIT_MULTIPLIER = {
   OZ: 31.103,
 };
 
-const CommodityTable = ({ commodities }) => {
+const CommodityTable = ({ title, items }) => {
   const { goldData, silverData } = useSpotRate();
 
+  // ✅ FIXED: Minted bars treated as gold
   const getSpot = (metal) => {
-    const lower = metal.toLowerCase();
-    if (lower.includes("gold")) return goldData;
+    const lower = metal?.toLowerCase() || "";
+
+    if (lower.includes("gold") || lower.includes("minted")) {
+      return goldData; // ✅ minted uses gold spot
+    }
+
     if (lower.includes("silver")) return silverData;
+
     return null;
   };
 
@@ -33,43 +39,85 @@ const CommodityTable = ({ commodities }) => {
 
   const formatPrice = (value) => {
     if (value == null || isNaN(value)) return "—";
+
     const intLen = Math.floor(Math.abs(value)).toString().length;
+
     let decimals = 3;
     if (intLen >= 4) decimals = 0;
     else if (intLen === 3) decimals = 2;
+
     return value.toLocaleString("en-US", {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
     });
   };
 
+  // ✅ Build rows with fallback
+  // const rows =
+  //   items
+  //     ?.map((item) => {
+  //       const spot = getSpot(item.metal);
+
+  //       // 🔥 fallback important
+  //       const effectiveSpot = spot || goldData;
+  //       if (!effectiveSpot) return null;
+
+  //       const mult = UNIT_MULTIPLIER[item.weight] || 1;
+  //       const pur = purityFactor(item.purity);
+
+  //       const baseBid =
+  //         (effectiveSpot.bid / OUNCE) * AED * mult * item.unit * pur;
+
+  //       const baseAsk =
+  //         (effectiveSpot.ask / OUNCE) * AED * mult * item.unit * pur;
+
+  //       return {
+  //         purity: item.purity,
+  //         metal: item.metal,
+  //         unit: `${item.unit} ${item.weight}`,
+  //         bid:
+  //           baseBid +
+  //           (Number(item.buyCharge) || 0) +
+  //           (Number(item.buyPremium) || 0),
+  //         ask:
+  //           baseAsk +
+  //           (Number(item.sellCharge) || 0) +
+  //           (Number(item.sellPremium) || 0),
+  //       };
+  //     })
+  //     .filter(Boolean) ?? [];
+
   const rows =
-    commodities
+    items
       ?.map((item) => {
         const spot = getSpot(item.metal);
-        if (!spot) return null;
+
+        // 🔥 IMPORTANT: fallback to goldData
+        const effectiveSpot = spot || goldData;
+        if (!effectiveSpot) return null;
 
         const mult = UNIT_MULTIPLIER[item.weight] || 1;
         const pur = purityFactor(item.purity);
+        const unitValue = Number(item.unit) || 1;
 
-        const baseBid = (spot.bid / OUNCE) * AED * mult * item.unit * pur;
-        const baseAsk = (spot.ask / OUNCE) * AED * mult * item.unit * pur;
+        const baseBid =
+          (effectiveSpot.bid / OUNCE) * AED * mult * unitValue * pur;
 
-        const bid =
-          baseBid +
-          (Number(item.buyCharge) || 0) +
-          (Number(item.buyPremium) || 0);
-        const ask =
-          baseAsk +
-          (Number(item.sellCharge) || 0) +
-          (Number(item.sellPremium) || 0);
+        const baseAsk =
+          (effectiveSpot.ask / OUNCE) * AED * mult * unitValue * pur;
 
         return {
           purity: item.purity,
           metal: item.metal,
-          unit: `${item.unit} ${item.weight}`,
-          bid,
-          ask,
+          unit: `${unitValue} ${item.weight}`,
+          bid:
+            baseBid +
+            (Number(item.buyCharge) || 0) +
+            (Number(item.buyPremium) || 0),
+          ask:
+            baseAsk +
+            (Number(item.sellCharge) || 0) +
+            (Number(item.sellPremium) || 0),
         };
       })
       .filter(Boolean) ?? [];
@@ -78,7 +126,7 @@ const CommodityTable = ({ commodities }) => {
 
   useEffect(() => {
     const checkWidth = () => {
-      setIsMobile(window.innerWidth <= 768); // 🔥 your control point
+      setIsMobile(window.innerWidth <= 768);
     };
 
     checkWidth();
@@ -87,15 +135,31 @@ const CommodityTable = ({ commodities }) => {
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
+  // ❌ No data → don't render section
+  if (!rows.length) return null;
+
   return (
-    <Box
-      sx={{
-        width: "100%",
-        mt: "1.2vw",
-        overflow: "hidden",
-      }}
-    >
-      {/* header */}
+    <Box sx={{ width: "100%", overflow: "hidden" }}>
+      {/* 🔥 TITLE */}
+      <Box
+        sx={{
+          textAlign: "center",
+          py: ".8vw",
+          borderRadius: ".5vw",
+          background: "rgba(255,255,255,0.08)",
+          mb: ".5vw",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: { xs: "14px", lg: "1vw" },
+            fontWeight: 800,
+            color: "#fff",
+          }}
+        >
+          {title}
+        </Typography>
+      </Box>
 
       <Box
         sx={{
@@ -116,6 +180,7 @@ const CommodityTable = ({ commodities }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -132,6 +197,8 @@ const CommodityTable = ({ commodities }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
+
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -146,6 +213,8 @@ const CommodityTable = ({ commodities }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
+
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -161,6 +230,8 @@ const CommodityTable = ({ commodities }) => {
             fontSize: {
               xs: "14px",
               lg: "1.2vw",
+              xl: "1.5vw",
+
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -190,7 +261,7 @@ const CommodityTable = ({ commodities }) => {
         ) : (
           <Swiper
             direction="vertical"
-            slidesPerView={4} // 👈 adjust based on height
+            slidesPerView={4}
             spaceBetween={10}
             loop={true}
             // modules={[Autoplay]} // 👈 Register it here
@@ -210,8 +281,10 @@ const CommodityTable = ({ commodities }) => {
                     display: "grid",
                     gridTemplateColumns: "1.4fr 0.8fr 0.8fr 0.8fr",
                     alignItems: "end",
-                    py: "1.1vw",
+                    borderRadius: ".5vw",
+                    py: ".7vw",
                     px: "1.5vw",
+                    border: "1px solid rgba(255, 255, 255, 0.3)", // 👈 mild bg
                   }}
                 >
                   <Typography
@@ -221,6 +294,7 @@ const CommodityTable = ({ commodities }) => {
                         xs: "14px",
                         sm: "12px",
                         lg: "1.6vw",
+                        xl: "1.8vw",
                       },
                       fontWeight: 800,
                       color: "#FFFFFF",
@@ -257,6 +331,8 @@ const CommodityTable = ({ commodities }) => {
                       fontSize: {
                         xs: "14px",
                         lg: "1.3vw",
+                        xl: "1.8vw",
+
                       },
                       color: "#FFFFFF",
                       textAlign: "start",
@@ -271,6 +347,8 @@ const CommodityTable = ({ commodities }) => {
                       fontSize: {
                         xs: "14px",
                         lg: "1.5vw",
+                        xl: "1.8vw",
+
                       },
                       fontWeight: 600,
                       color: "#FFFFFF", // soft pink ASK
@@ -285,6 +363,8 @@ const CommodityTable = ({ commodities }) => {
                       fontSize: {
                         xs: "14px",
                         lg: "1.5vw",
+                        xl: "1.8vw",
+
                       },
                       fontWeight: 600,
                       color: "#FFFFFF", // soft pink ASK

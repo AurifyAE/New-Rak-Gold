@@ -41,13 +41,28 @@ function TvScreen() {
 
   const adminId = import.meta.env.VITE_APP_ADMIN_ID;
 
-  updateMarketData(
+  // updateMarketData(
+  //   marketData,
+  //   goldBidSpread,
+  //   goldAskSpread,
+  //   silverBidSpread,
+  //   silverAskSpread,
+  // );
+  useEffect(() => {
+    updateMarketData(
+      marketData,
+      goldBidSpread,
+      goldAskSpread,
+      silverBidSpread,
+      silverAskSpread,
+    );
+  }, [
     marketData,
     goldBidSpread,
     goldAskSpread,
     silverBidSpread,
     silverAskSpread,
-  );
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,12 +133,38 @@ function TvScreen() {
 
       socket.on("disconnect", () => {});
 
+      // socket.on("market-data", (data) => {
+      //   if (data && data.symbol) {
+      //     setMarketData((prevData) => ({
+      //       ...prevData,
+      //       [data.symbol]: {
+      //         ...prevData[data.symbol],
+      //         ...data,
+      //       },
+      //     }));
+      //   } else {
+      //     console.warn("Received malformed market data:", data);
+      //   }
+      // });
+
       socket.on("market-data", (data) => {
-        if (data && data.symbol) {
-          setMarketData((prevData) => ({
-            ...prevData,
+        if (Array.isArray(data)) {
+          data.forEach((item) => {
+            if (item.symbol) {
+              setMarketData((prev) => ({
+                ...prev,
+                [item.symbol]: {
+                  ...prev[item.symbol],
+                  ...item,
+                },
+              }));
+            }
+          });
+        } else if (data && data.symbol) {
+          setMarketData((prev) => ({
+            ...prev,
             [data.symbol]: {
-              ...prevData[data.symbol],
+              ...prev[data.symbol],
               ...data,
             },
           }));
@@ -164,6 +205,16 @@ function TvScreen() {
     return () => clearInterval(interval);
   }, []);
 
+  const goldCommodities = commodities.filter(
+    (item) =>
+      item.metal?.toLowerCase().includes("gold") &&
+      !item.metal?.toLowerCase().includes("minted"),
+  );
+
+  const mintedBars = commodities.filter((item) =>
+    item.metal?.toLowerCase().includes("minted"),
+  );
+
   return (
     <Box
       sx={{
@@ -198,14 +249,14 @@ function TvScreen() {
 
       <Grid
         container
-        spacing={4}
+        spacing={3}
         minHeight="100%"
         // alignItems="flex-start"
         justifyContent="space-between"
         padding="1vw"
         flexWrap="wrap"
         zIndex="1"
-        rowGap={{ xs: "2vw", xl: "0" }}
+        rowGap={{ xs: "1vw", lg: "0", xl: "1vw" }}
         position="relative"
         margin="0"
         columnGap={{ xs: "2vw", md: "0" }}
@@ -236,7 +287,7 @@ function TvScreen() {
 
           gridTemplateColumns={isMobile ? "1fr" : "1fr 1fr"}
         >
-          <Box
+          {/* <Box
             display="flex"
             alignItems="center"
             flexDirection="column"
@@ -246,10 +297,7 @@ function TvScreen() {
             <Box
               sx={{
                 height: "auto",
-                // width: {
-                //   xs: "30vw",
-                //   lg: "20vw",
-                // },
+               
                 width: isMobile
                   ? "20vw"
                   : {
@@ -270,10 +318,15 @@ function TvScreen() {
             </Box>
             <WorldClock />
             <SystemClock />
-            {/* <PoweredByAurify /> */}
-          </Box>
+          </Box> */}
+          {/* GOLD TABLE */}
           <Box>
-            <CommodityTable commodities={commodities} />
+            <CommodityTable title="GOLD" items={goldCommodities} />
+          </Box>
+
+          {/* MINTED BARS TABLE */}
+          <Box>
+            <CommodityTable title="MINTED BARS" items={mintedBars} />
           </Box>
         </Grid>
 

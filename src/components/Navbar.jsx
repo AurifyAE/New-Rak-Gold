@@ -66,7 +66,7 @@ const Navbar = ({ onNavClick }) => {
       <Toolbar
         sx={{
           height: { xs: "auto", lg: "1.5vw" },
-          minHeight: { xs: "50px", lg: "70px" },
+          minHeight: { xs: "50px", lg: "50px", xl: "4vw" },
           position: "relative",
           display: "flex",
           alignItems: "center",
@@ -95,7 +95,7 @@ const Navbar = ({ onNavClick }) => {
                 onClick={(e) => handleNavClick(e, label, href)}
                 sx={{
                   color: isActive ? "#4A90E2" : "#fff",
-                  fontSize: { xs: "12px", sm: "15px", xl: "0.85vw" },
+                  fontSize: { xs: "12px", sm: "15px", lg: "0.85vw", xl: "1vw" },
                   fontWeight: 700,
                   textDecoration: "none",
                   whiteSpace: "nowrap",
@@ -117,7 +117,7 @@ const Navbar = ({ onNavClick }) => {
 
                   "&:hover": {
                     color: "#93C2F8",
-                    "&::after": { 
+                    "&::after": {
                       width: "100%",
                     },
                   },
