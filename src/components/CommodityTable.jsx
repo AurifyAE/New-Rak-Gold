@@ -198,7 +198,6 @@ const CommodityTable = ({ title, items }) => {
               xs: "14px",
               lg: "1.2vw",
               xl: "1.5vw",
-
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -214,7 +213,6 @@ const CommodityTable = ({ title, items }) => {
               xs: "14px",
               lg: "1.2vw",
               xl: "1.5vw",
-
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -231,7 +229,6 @@ const CommodityTable = ({ title, items }) => {
               xs: "14px",
               lg: "1.2vw",
               xl: "1.5vw",
-
             },
             fontWeight: 600,
             color: "#FFFFFF",
@@ -245,6 +242,7 @@ const CommodityTable = ({ title, items }) => {
       <Box
         sx={{
           maxHeight: { xs: "auto", sm: "18vw" },
+          mt: "1vw",
         }}
       >
         {rows.length === 0 ? (
@@ -271,7 +269,7 @@ const CommodityTable = ({ title, items }) => {
             // }}
             speed={3000} // 👈 higher = smoother slow scroll
             // allowTouchMove={false} // important for TV
-            style={{ height: isMobile ? "35vw" : "18vw" }}
+            style={{ height: isMobile ? "22vw" : "18vw" }}
           >
             {rows.map((row, index) => (
               <SwiperSlide key={index}>
@@ -332,7 +330,6 @@ const CommodityTable = ({ title, items }) => {
                         xs: "14px",
                         lg: "1.3vw",
                         xl: "1.8vw",
-
                       },
                       color: "#FFFFFF",
                       textAlign: "start",
@@ -348,7 +345,6 @@ const CommodityTable = ({ title, items }) => {
                         xs: "14px",
                         lg: "1.5vw",
                         xl: "1.8vw",
-
                       },
                       fontWeight: 600,
                       color: "#FFFFFF", // soft pink ASK
@@ -364,7 +360,6 @@ const CommodityTable = ({ title, items }) => {
                         xs: "14px",
                         lg: "1.5vw",
                         xl: "1.8vw",
-
                       },
                       fontWeight: 600,
                       color: "#FFFFFF", // soft pink ASK

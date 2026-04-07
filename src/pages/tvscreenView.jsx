@@ -189,11 +189,12 @@ function TvScreen() {
 
   useEffect(() => {
     const checkWidth = () => {
-      setIsMobile(window.screen.width <= 768); // 🔥 screen.width ignores zoom
+      setIsMobile(window.innerWidth <= 768);
     };
 
     checkWidth();
     window.addEventListener("resize", checkWidth);
+
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
@@ -256,7 +257,7 @@ function TvScreen() {
         padding="1vw"
         flexWrap="wrap"
         zIndex="1"
-        rowGap={{ xs: "1vw", lg: "0", xl: "1vw" }}
+        rowGap={{ xs: "1vw" }}
         position="relative"
         margin="0"
         columnGap={{ xs: "2vw", md: "0" }}
@@ -282,7 +283,7 @@ function TvScreen() {
         <Grid
           xs={12}
           display="grid"
-          gap="2vw"
+          gap={isMobile ? "3vw" : "2vw"}
           // gridTemplateColumns={{ xs: '1fr  ', md: "1fr 1fr" }}
 
           gridTemplateColumns={isMobile ? "1fr" : "1fr 1fr"}
