@@ -174,8 +174,6 @@ const SpotRate = () => {
           padding: { xs: " 0vw 3vw", sm: "0" },
         }}
       >
-         
-
         <Box
           sx={{
             position: "relative",
@@ -234,7 +232,7 @@ const SpotRate = () => {
         display: "grid",
         gap: "2vw",
         width: "100%",
-        alignItems:'end',
+        alignItems: "end",
         marginTop: {
           xs: "20px", // mobile
           sm: "0vw", // small tablets
@@ -258,6 +256,7 @@ const SpotRate = () => {
                 xs: "30vw",
                 lg: "20vw",
               },
+          margin: { xs: "auto" },
           marginTop: {
             xs: "10px",
             sm: "0",
