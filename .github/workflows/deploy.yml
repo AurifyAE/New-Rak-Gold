@@ -1,0 +1,59 @@
+name: Deploy to AWS - New_Rak
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Get latest code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 3. Build project
+      - name: Build Project
+        run: npm run build
+
+      # 4. Clean server folder
+      - name: Clean and prepare New_Rak folder
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo rm -rf /var/www/html/TV_Screens/New_Rak
+            sudo mkdir -p /var/www/html/TV_Screens/New_Rak
+            sudo chown -R ubuntu:ubuntu /var/www/html/TV_Screens/New_Rak
+            sudo chmod -R 755 /var/www/html/TV_Screens/New_Rak
+
+      # 5. Upload new build
+      - name: Upload build files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "dist/*"
+          target: "/var/www/html/TV_Screens/New_Rak"
+          overwrite: true
+          strip_components: 1
+
+      # 6. Restart server
+      - name: Restart Nginx
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo systemctl restart nginx
