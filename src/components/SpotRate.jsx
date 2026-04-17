@@ -116,7 +116,8 @@ const SpotRate = () => {
 
             fontSize: {
               xs: "15px", // mobile
-              sm: "2.5vw", // small tablets
+              // sm: "2.5vw", // small tablets
+              sm: "20px", // small tablets
               md: "1.6vw", // laptops
             },
             letterSpacing: "0.25vw",
