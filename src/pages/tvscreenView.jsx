@@ -206,12 +206,18 @@ function TvScreen() {
     return () => clearInterval(interval);
   }, []);
 
-  const goldCommodities = commodities.filter(
+  // const goldCommodities = commodities.filter(
+  //   (item) =>
+  //     item.metal?.toLowerCase().includes("gold") &&
+  //     !item.metal?.toLowerCase().includes("minted"),
+  // );
+
+  const goldAndSilverCommodities = commodities.filter(
     (item) =>
-      item.metal?.toLowerCase().includes("gold") &&
+      (item.metal?.toLowerCase().includes("gold") ||
+        item.metal?.toLowerCase().includes("silver")) &&
       !item.metal?.toLowerCase().includes("minted"),
   );
-
   const mintedBars = commodities.filter((item) =>
     item.metal?.toLowerCase().includes("minted"),
   );
@@ -323,7 +329,7 @@ function TvScreen() {
           </Box> */}
           {/* GOLD TABLE */}
           <Box>
-            <CommodityTable title="GOLD" items={goldCommodities} />
+            <CommodityTable title="GOLD" items={goldAndSilverCommodities} />
           </Box>
 
           {/* MINTED BARS TABLE */}
@@ -337,7 +343,7 @@ function TvScreen() {
           sx={{
             mt: { xs: "20px", md: "0" },
             position: { xs: "unset", md: "fixed" },
-
+            zIndex: "2",
             bottom: "0",
             width: "100%",
             left: "0",

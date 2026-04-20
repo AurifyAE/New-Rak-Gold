@@ -18,25 +18,25 @@ const NewsTicker = ({ newsItems = [] }) => {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        background: " rgba(0,0,0,.4)",
+        background: " #04090b",
       }}
     >
       {/* LEFT BRAND */}
       <Typography
         sx={{
           color: "#FFFFFF",
-          background: '  #2D464E',
+          background: "  #2D464E",
           fontSize: {
             xs: "12px",
             lg: "1.2vw",
           },
-          fontWeight: '700',
+          fontWeight: "700",
           whiteSpace: "nowrap",
           padding: "0 3.5vw",
           height: "100%",
           display: "flex",
           alignItems: "center",
-          borderRadius: '0.1vw',
+          borderRadius: "0.1vw",
           justifyContent: "center",
 
           flexShrink: 0,
