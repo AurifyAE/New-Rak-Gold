@@ -328,7 +328,7 @@ function TvScreen() {
           </Box> */}
           {/* GOLD TABLE */}
           <Box>
-            <CommodityTable title="GOLD" items={goldAndSilverCommodities} />
+            <CommodityTable title="CASTED BARS" items={goldAndSilverCommodities} />
           </Box>
 
           {/* MINTED BARS TABLE */}
