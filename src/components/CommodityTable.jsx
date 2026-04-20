@@ -219,7 +219,9 @@ const CommodityTable = ({ title, items }) => {
             textAlign: "center",
           }}
         >
-          BID
+          {/* BID */}
+          {title == "MINTED BARS" ? "SWISS" : "BID"}
+
         </Typography>
 
         <Typography
@@ -235,7 +237,9 @@ const CommodityTable = ({ title, items }) => {
             textAlign: "center",
           }}
         >
-          ASK
+          {/* ASK */}
+          {title == "MINTED BARS" ? "LOCAL" : "Ask"}
+
         </Typography>
       </Box>
 
