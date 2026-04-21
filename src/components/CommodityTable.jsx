@@ -34,6 +34,28 @@ const CommodityTable = ({ title, items }) => {
     return null;
   };
 
+  const toNumber = (value) => {
+    if (value == null) return 0;
+    if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+    const raw = String(value).trim();
+    if (!raw) return 0;
+    const cleaned = raw.replace(/,/g, "");
+    const n = parseFloat(cleaned);
+    return Number.isFinite(n) ? n : 0;
+  };
+
+  // Supports either a flat premium (e.g. "12.5") or percentage (e.g. "0.35%")
+  const premiumToValue = (premium, base) => {
+    if (premium == null) return 0;
+    const raw = String(premium).trim();
+    if (!raw) return 0;
+    if (raw.includes("%")) {
+      const pct = toNumber(raw.replace("%", ""));
+      return (base * pct) / 100;
+    }
+    return toNumber(raw);
+  };
+
   const purityFactor = (purity) =>
     purity ? purity / 10 ** String(purity).length : 1;
 
@@ -98,7 +120,7 @@ const CommodityTable = ({ title, items }) => {
 
         const mult = UNIT_MULTIPLIER[item.weight] || 1;
         const pur = purityFactor(item.purity);
-        const unitValue = Number(item.unit) || 1;
+        const unitValue = toNumber(item.unit) || 1;
 
         const baseBid =
           (effectiveSpot.bid / OUNCE) * AED * mult * unitValue * pur;
@@ -106,18 +128,17 @@ const CommodityTable = ({ title, items }) => {
         const baseAsk =
           (effectiveSpot.ask / OUNCE) * AED * mult * unitValue * pur;
 
+        const buyCharge = toNumber(item.buyCharge);
+        const sellCharge = toNumber(item.sellCharge);
+        const buyPremium = premiumToValue(item.buyPremium, baseBid);
+        const sellPremium = premiumToValue(item.sellPremium, baseAsk);
+
         return {
           purity: item.purity,
           metal: item.metal,
           unit: `${unitValue} ${item.weight}`,
-          bid:
-            baseBid +
-            (Number(item.buyCharge) || 0) +
-            (Number(item.buyPremium) || 0),
-          ask:
-            baseAsk +
-            (Number(item.sellCharge) || 0) +
-            (Number(item.sellPremium) || 0),
+          bid: baseBid + buyCharge + buyPremium,
+          ask: baseAsk + sellCharge + sellPremium,
         };
       })
       .filter(Boolean) ?? [];
