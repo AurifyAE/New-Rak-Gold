@@ -34,6 +34,16 @@ const CommodityTable = ({ title, items }) => {
     return null;
   };
 
+  const toNumber = (value) => {
+    if (value == null) return 0;
+    if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+    const raw = String(value).trim();
+    if (!raw) return 0;
+    const cleaned = raw.replace(/,/g, "");
+    const n = parseFloat(cleaned);
+    return Number.isFinite(n) ? n : 0;
+  };
+
   const purityFactor = (purity) =>
     purity ? purity / 10 ** String(purity).length : 1;
 
@@ -91,33 +101,35 @@ const CommodityTable = ({ title, items }) => {
     items
       ?.map((item) => {
         const spot = getSpot(item.metal);
+        if (!spot) return null;
 
-        // 🔥 IMPORTANT: fallback to goldData
-        const effectiveSpot = spot || goldData;
-        if (!effectiveSpot) return null;
+        const multiplier = UNIT_MULTIPLIER[item.weight] || 1;
+        const purity = purityFactor(item.purity);
+        const unitValue = toNumber(item.unit) || 1;
 
-        const mult = UNIT_MULTIPLIER[item.weight] || 1;
-        const pur = purityFactor(item.purity);
-        const unitValue = Number(item.unit) || 1;
+        const spotBid = toNumber(spot.bid);
+        const spotAsk = toNumber(spot.ask);
 
+        const buyPremium = toNumber(item.buyPremium);
+        const sellPremium = toNumber(item.sellPremium);
+
+        // Premiums are applied at spot-level (USD/oz), then converted to AED
         const baseBid =
-          (effectiveSpot.bid / OUNCE) * AED * mult * unitValue * pur;
-
+          ((spotBid + buyPremium) / OUNCE) * AED * multiplier * unitValue * purity;
         const baseAsk =
-          (effectiveSpot.ask / OUNCE) * AED * mult * unitValue * pur;
+          ((spotAsk + sellPremium) / OUNCE) * AED * multiplier * unitValue * purity;
+
+        const bid = baseBid + toNumber(item.buyCharge);
+        const ask = baseAsk + toNumber(item.sellCharge);
+
+        const isTenTola = item.metal === "Gold Ten TOLA";
 
         return {
-          purity: item.purity,
-          metal: item.metal,
+          name: isTenTola ? "Gold" : item.metal,
+          purity: isTenTola ? "TEN TOLA" : item.purity,
           unit: `${unitValue} ${item.weight}`,
-          bid:
-            baseBid +
-            (Number(item.buyCharge) || 0) +
-            (Number(item.buyPremium) || 0),
-          ask:
-            baseAsk +
-            (Number(item.sellCharge) || 0) +
-            (Number(item.sellPremium) || 0),
+          bid,
+          ask,
         };
       })
       .filter(Boolean) ?? [];
@@ -266,11 +278,11 @@ const CommodityTable = ({ title, items }) => {
             slidesPerView={4}
             spaceBetween={10}
             loop={true}
-            // modules={[Autoplay]} // 👈 Register it here
-            // autoplay={{
-            //   delay: 0,
-            //   disableOnInteraction: false,
-            // }}
+            modules={[Autoplay]} // 👈 Register it here
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+            }}
             speed={3000} // 👈 higher = smoother slow scroll
             // allowTouchMove={false} // important for TV
             style={{ height: isMobile ? "22vw" : "18vw" }}
@@ -309,7 +321,7 @@ const CommodityTable = ({ title, items }) => {
                       },
                     }}
                   >
-                    {row.metal}
+                    {row.name}
                     <Typography
                       sx={{
                         // fontSize: "1vw",
