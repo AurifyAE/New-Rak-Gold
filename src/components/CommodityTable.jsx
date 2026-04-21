@@ -238,7 +238,7 @@ const CommodityTable = ({ title, items }) => {
           }}
         >
           {/* ASK */}
-          {title == "MINTED BARS" ? "LOCAL" : "Ask"}
+          {title == "MINTED BARS" ? "LOCAL" : "ASK"}
 
         </Typography>
       </Box>

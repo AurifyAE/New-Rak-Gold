@@ -10,11 +10,11 @@ import PrivacyPolicy from "./pages/privacy-policy";
 import ContactUs from "./pages/contact-us";
 
 function App() {
-  const [isTvScreen, setIsTvScreen] = useState(window.innerWidth >= 400);
+  const [isTvScreen, setIsTvScreen] = useState(window.innerWidth >= 100);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTvScreen(window.innerWidth >= 400);
+      setIsTvScreen(window.innerWidth >= 100);
     };
 
     handleResize();
