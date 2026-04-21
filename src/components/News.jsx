@@ -52,7 +52,7 @@ const NewsTicker = ({ newsItems = [] }) => {
             whiteSpace: "nowrap",
             display: "inline-flex",
             alignItems: "center",
-            animation: "ticker 70s linear infinite",
+            animation: "ticker 150s linear infinite",
           }}
         >
           {tickerItems.map((item, index) => (
@@ -82,7 +82,7 @@ const NewsTicker = ({ newsItems = [] }) => {
         {`
           @keyframes ticker {
             0% {
-              transform: translateX(30%);
+              transform: translateX(10%);
             }
             100% {
               transform: translateX(-100%);
