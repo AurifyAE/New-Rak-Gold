@@ -186,6 +186,7 @@ const SpotRate = () => {
             gridTemplateColumns: "  1fr 1fr",
             borderRadius: "1vw",
             backdropFilter: "blur(0.4vw)",
+            backgroundColor: { xs: "#ffffff13", md: "transparent" },
           }}
         >
           <Box
