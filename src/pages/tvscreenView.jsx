@@ -131,7 +131,7 @@ function TvScreen() {
         socket.emit("request-data", symbols);
       });
 
-      socket.on("disconnect", () => {});
+      socket.on("disconnect", () => { });
 
       // socket.on("market-data", (data) => {
       //   if (data && data.symbol) {
@@ -243,6 +243,7 @@ function TvScreen() {
           inset: 0,
           zIndex: 0,
           overflow: "hidden",
+          transform: { xs: "scaleY(-1)", md: "none" },
         }}
       >
         <img
