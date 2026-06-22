@@ -175,6 +175,17 @@ const SpotRate = () => {
           padding: { xs: " 0vw 3vw", sm: "0" },
         }}
       >
+        <Typography
+          sx={{
+            fontSize: "1.4vw",
+            fontWeight: "700",
+            color: "#FFFFFF",
+            mb: "0.52vw",
+          }}
+        >
+          {theme === "gold" ? "GOLD" : "SILVER"}
+        </Typography>
+
         <Box
           sx={{
             position: "relative",

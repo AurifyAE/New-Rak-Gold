@@ -115,9 +115,17 @@ const CommodityTable = ({ title, items }) => {
 
         // Premiums are applied at spot-level (USD/oz), then converted to AED
         const baseBid =
-          ((spotBid + buyPremium) / OUNCE) * AED * multiplier * unitValue * purity;
+          ((spotBid + buyPremium) / OUNCE) *
+          AED *
+          multiplier *
+          unitValue *
+          purity;
         const baseAsk =
-          ((spotAsk + sellPremium) / OUNCE) * AED * multiplier * unitValue * purity;
+          ((spotAsk + sellPremium) / OUNCE) *
+          AED *
+          multiplier *
+          unitValue *
+          purity;
 
         const bid = baseBid + toNumber(item.buyCharge);
         const ask = baseAsk + toNumber(item.sellCharge);
@@ -125,6 +133,8 @@ const CommodityTable = ({ title, items }) => {
         const isTenTola = item.metal === "Gold Ten TOLA";
 
         return {
+          metal_name: item.metal_name,
+
           name: isTenTola ? "Gold" : item.metal,
           purity: isTenTola ? "TEN TOLA" : item.purity,
           unit: `${unitValue} ${item.weight}`,
@@ -233,7 +243,6 @@ const CommodityTable = ({ title, items }) => {
         >
           {/* BID */}
           {title == "MINTED BARS" ? "SWISS" : "BID"}
-
         </Typography>
 
         <Typography
@@ -251,7 +260,6 @@ const CommodityTable = ({ title, items }) => {
         >
           {/* ASK */}
           {title == "MINTED BARS" ? "LOCAL" : "ASK"}
-
         </Typography>
       </Box>
 
@@ -321,7 +329,7 @@ const CommodityTable = ({ title, items }) => {
                       },
                     }}
                   >
-                    {row.name}
+                    {row.metal_name ? row.metal_name : row.name}
                     <Typography
                       sx={{
                         // fontSize: "1vw",
