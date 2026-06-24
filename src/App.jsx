@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useConnectionState } from "use-connection-state";
+import { useState, useEffect, useRef } from "react";
 import { SpotRateProvider } from "./context/SpotRateContext";
 import "./App.css";
 import TvScreen from "./pages/tvscreenView";
@@ -11,6 +10,10 @@ import ContactUs from "./pages/contact-us";
 
 function App() {
   const [isTvScreen, setIsTvScreen] = useState(window.innerWidth >= 100);
+  const initialSize = useRef({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,6 +24,30 @@ function App() {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    let refreshTimer;
+
+    const refreshOnResize = () => {
+      const sizeChanged =
+        window.innerWidth !== initialSize.current.width ||
+        window.innerHeight !== initialSize.current.height;
+
+      if (!sizeChanged) return;
+
+      window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(() => {
+        window.location.reload();
+      }, 300);
+    };
+
+    window.addEventListener("resize", refreshOnResize);
+
+    return () => {
+      window.clearTimeout(refreshTimer);
+      window.removeEventListener("resize", refreshOnResize);
+    };
   }, []);
 
   return (

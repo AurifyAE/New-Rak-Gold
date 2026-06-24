@@ -1,16 +1,17 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import Marquee from "react-fast-marquee";
 
 const NewsTicker = ({ newsItems = [] }) => {
-  // Ensure enough items for smooth scrolling
-  const tickerItems =
-    newsItems.length <= 1 ? Array(5).fill(newsItems[0]) : newsItems;
+  const items =
+    newsItems.length > 0
+      ? newsItems
+      : [{ description: "Welcome to New Rak Gold" }];
 
   return (
     <Box
       sx={{
         width: "100%",
-        // height: "3vw",
         height: {
           xs: "35px",
           lg: "3vw",
@@ -18,78 +19,69 @@ const NewsTicker = ({ newsItems = [] }) => {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        background: " #04090b",
+        background: "#04090b",
       }}
     >
       {/* LEFT BRAND */}
       <Typography
         sx={{
           color: "#FFFFFF",
-          background: "  #2D464E",
+          background: "#2D464E",
           fontSize: {
             xs: "12px",
             lg: "1.2vw",
           },
-          fontWeight: "700",
+          fontWeight: 700,
           whiteSpace: "nowrap",
           padding: "0 3.5vw",
           height: "100%",
           display: "flex",
           alignItems: "center",
-          borderRadius: "0.1vw",
           justifyContent: "center",
-
           flexShrink: 0,
         }}
       >
         NEW RAK GOLD
       </Typography>
 
-      {/* SCROLL AREA */}
-      <Box sx={{ flex: 1, overflow: "hidden" }}>
-        <Box
-          sx={{
-            whiteSpace: "nowrap",
-            display: "inline-flex",
-            alignItems: "center",
-            animation: "ticker 150s linear infinite",
-          }}
+      {/* NEWS TICKER */}
+      <Box
+        sx={{
+          flex: 1,
+          overflow: "hidden",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Marquee
+          speed={40}
+          gradient={false}
+          autoFill
+          pauseOnHover={false}
+          pauseOnClick={false}
+          direction="left"
         >
-          {tickerItems.map((item, index) => (
+          {items.map((item, index) => (
             <Typography
               key={index}
               component="span"
               sx={{
                 color: "#e6e6e6",
-                // fontSize: "1.3vw",
                 fontSize: {
                   xs: "12px",
                   lg: "1.3vw",
                 },
                 fontWeight: 500,
                 whiteSpace: "nowrap",
-                marginRight: "4vw",
+                mx: "4vw",
               }}
             >
-              {item?.description || ""}
+              {item?.description}
             </Typography>
           ))}
-        </Box>
+        </Marquee>
       </Box>
-
-      {/* KEYFRAMES */}
-      <style>
-        {`
-          @keyframes ticker {
-            0% {
-              transform: translateX(10%);
-            }
-            100% {
-              transform: translateX(-100%);
-            }
-          }
-        `}
-      </style>
     </Box>
   );
 };
