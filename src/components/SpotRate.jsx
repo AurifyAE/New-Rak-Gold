@@ -150,7 +150,7 @@ const SpotRate = () => {
             transition: "all 0.4s ease",
           }}
         >
-          {value}
+          {value || "—"}
         </Typography>
       </Box>
     );
@@ -214,7 +214,7 @@ const SpotRate = () => {
             }}
           >
             <PricePulse label="BID" value={data.bid} dir={bidDir} />
-            LOW <span className="hl-value-low text-[#ff1818]">{data.low}</span>
+            LOW <span className="hl-value-low text-[#ff1818]">{data.low || "—"}</span>
           </Box>
 
           {/* Price Boxes */}
@@ -230,9 +230,9 @@ const SpotRate = () => {
               fontWeight: "700",
             }}
           >
-            <PricePulse label="ASK" value={data.ask} dir={askDir} />
+            <PricePulse label="ASK" value={data.ask || "—"} dir={askDir} />
             HIGH{" "}
-            <span className="hl-value-high text-[#43ff1e]">{data.high}</span>
+            <span className="hl-value-high text-[#43ff1e]">{data.high || "—"}</span>
           </Box>
         </Box>
       </Box>
