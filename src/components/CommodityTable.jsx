@@ -110,25 +110,31 @@ const CommodityTable = ({ title, items }) => {
         const spotBid = toNumber(spot.bid);
         const spotAsk = toNumber(spot.ask);
 
-        const buyPremium = toNumber(item.buyPremium);
-        const sellPremium = toNumber(item.sellPremium);
+        let bid = null;
+        let ask = null;
 
-        // Premiums are applied at spot-level (USD/oz), then converted to AED
-        const baseBid =
-          ((spotBid + buyPremium) / OUNCE) *
-          AED *
-          multiplier *
-          unitValue *
-          purity;
-        const baseAsk =
-          ((spotAsk + sellPremium) / OUNCE) *
-          AED *
-          multiplier *
-          unitValue *
-          purity;
+        // Only calculate values if spot rates are validly loaded (> 0)
+        if (spotBid > 0 && spotAsk > 0) {
+          const buyPremium = toNumber(item.buyPremium);
+          const sellPremium = toNumber(item.sellPremium);
 
-        const bid = baseBid + toNumber(item.buyCharge);
-        const ask = baseAsk + toNumber(item.sellCharge);
+          // Premiums are applied at spot-level (USD/oz), then converted to AED
+          const baseBid =
+            ((spotBid + buyPremium) / OUNCE) *
+            AED *
+            multiplier *
+            unitValue *
+            purity;
+          const baseAsk =
+            ((spotAsk + sellPremium) / OUNCE) *
+            AED *
+            multiplier *
+            unitValue *
+            purity;
+
+          bid = baseBid + toNumber(item.buyCharge);
+          ask = baseAsk + toNumber(item.sellCharge);
+        }
 
         const isTenTola = item.metal === "Gold Ten TOLA";
 
@@ -189,7 +195,6 @@ const CommodityTable = ({ title, items }) => {
           gridTemplateColumns: "1.4fr 0.8fr 0.8fr 0.8fr",
           py: "0.9vw",
           px: "1.5vw",
-          borderRadius: "0.5vw",
           alignItems: "end",
           borderRadius: "0.8vw",
           backdropFilter: "blur(0.3vw)",
